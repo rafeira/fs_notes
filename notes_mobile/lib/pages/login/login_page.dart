@@ -10,6 +10,8 @@ class LoginPage extends StatelessWidget {
   final divider = const SizedBox(
     height: 30,
   );
+  bool get isLoading => controller.isLoading;
+
   @override
   Widget build(BuildContext context) {
     return DefaultScaffold(
@@ -49,6 +51,15 @@ class LoginPage extends StatelessWidget {
                 await controller.onLoginButtonPressed(),
             controller: controller.passwordTextEditingController,
           ),
+          divider,
+          Align(
+              alignment: Alignment.center,
+              child: DefaultButton(
+                onTap: !isLoading
+                    ? () => controller.onLoginButtonPressed(setState)
+                    : null,
+                title: 'Login',
+              ))
         ]),
       ),
     );
