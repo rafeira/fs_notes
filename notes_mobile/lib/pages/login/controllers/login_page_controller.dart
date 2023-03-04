@@ -26,4 +26,11 @@ class LoginPageController {
     if (ValidationHelper.isEmailValid(value)) return null;
     return 'Email inválido';
   }
+
+  String? passwordValidator(String? value) {
+    if (value == null || value.isEmpty) return 'Email inválido!';
+    if (value.length < 6) return 'Quantidade mínima de caracteres (6)!';
+    if (ValidationHelper.isEmailValid(value)) return null;
+    return 'Email inválido';
+  }
 }
