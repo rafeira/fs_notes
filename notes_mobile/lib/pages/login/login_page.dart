@@ -34,6 +34,21 @@ class LoginPage extends StatelessWidget {
                 await controller.onLoginButtonPressed(),
             controller: controller.emailTextEditingController,
           ),
+          divider,
+          AuthTextField(
+            hintText: 'senha',
+            suffix: const Icon(
+              Icons.password,
+              color: Colors.blue,
+            ),
+            isTextObscure: true,
+            label: 'Senha',
+            textInputType: TextInputType.visiblePassword,
+            validator: controller.passwordValidator,
+            onFieldSubmitted: (_) async =>
+                await controller.onLoginButtonPressed(),
+            controller: controller.passwordTextEditingController,
+          ),
         ]),
       ),
     );
