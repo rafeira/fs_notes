@@ -43,6 +43,7 @@ class _LoginPageState extends State<LoginPage> {
               color: Colors.blue,
             ),
             label: 'Email',
+            enabled: !isLoading,
             textInputType: TextInputType.emailAddress,
             validator: controller.emailValidator,
             onFieldSubmitted: (_) async =>
@@ -58,6 +59,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             isTextObscure: true,
             label: 'Senha',
+            enabled: !isLoading,
             textInputType: TextInputType.visiblePassword,
             validator: controller.passwordValidator,
             onFieldSubmitted: (_) async =>
