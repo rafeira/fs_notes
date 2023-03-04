@@ -7,13 +7,14 @@ class AuthTextField extends StatelessWidget {
       required this.controller,
       this.suffix,
       this.textInputType,
-      this.label, this.validator});
+      this.label, this.validator, this.onFieldSubmitted});
   final String? hintText;
   final TextEditingController controller;
   final Widget? suffix;
   final TextInputType? textInputType;
   final String? label;
   final FormFieldValidator<String>? validator;
+  final ValueChanged<String>? onFieldSubmitted;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +22,7 @@ class AuthTextField extends StatelessWidget {
       controller: controller,
       keyboardType: textInputType,
       validator: validator,
+      onFieldSubmitted: onFieldSubmitted,
       decoration: InputDecoration(
           contentPadding: const EdgeInsets.symmetric(horizontal: 10.0),
           suffix: suffix,
