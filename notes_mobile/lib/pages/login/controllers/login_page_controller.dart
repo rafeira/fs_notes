@@ -11,6 +11,13 @@ class LoginPageController {
   bool isLoading = false;
   Future<void> onLoginButtonPressed() async {
     loginFormKey.currentState!.validate();
+
+  Future<void> onEmailFieldSubmitted() async {
+    // await onLoginButtonPressed();
+  }
+
+  Future<void> onPasswordFieldSubmitted() async {
+    // await onLoginButtonPressed();
   }
 
   void loadPage() {
