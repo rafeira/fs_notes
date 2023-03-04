@@ -18,7 +18,7 @@ class LoginPageController {
   }
 
   void stopLoadPage() {
-    isLoading = true;
+    isLoading = false;
   }
 
   String? emailValidator(String? value) {
