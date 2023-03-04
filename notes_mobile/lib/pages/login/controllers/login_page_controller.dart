@@ -9,7 +9,9 @@ class LoginPageController {
   String get password => passwordTextEditingController.text;
 
   bool isLoading = false;
-  Future<void> onLoginButton() async {}
+  Future<void> onLoginButtonPressed() async {
+    loginFormKey.currentState!.validate();
+  }
 
   void loadPage() {
     isLoading = true;
