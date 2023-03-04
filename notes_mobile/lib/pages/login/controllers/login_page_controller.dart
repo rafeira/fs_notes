@@ -9,8 +9,14 @@ class LoginPageController {
   String get password => passwordTextEditingController.text;
 
   bool isLoading = false;
-  Future<void> onLoginButtonPressed() async {
-    loginFormKey.currentState!.validate();
+  Future<void> onLoginButtonPressed(
+      void Function(void Function() fn) setState) async {
+    if (loginFormKey.currentState!.validate()) {
+      setState(loadPage);
+      await Future.delayed(const Duration(seconds: 30));
+      setState(stopLoadPage);
+    }
+  }
 
   Future<void> onEmailFieldSubmitted() async {
     // await onLoginButtonPressed();

@@ -47,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
             textInputType: TextInputType.emailAddress,
             validator: controller.emailValidator,
             onFieldSubmitted: (_) async =>
-                await controller.onLoginButtonPressed(),
+                await controller.onLoginButtonPressed(setState),
             controller: controller.emailTextEditingController,
           ),
           divider,
@@ -63,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
             textInputType: TextInputType.visiblePassword,
             validator: controller.passwordValidator,
             onFieldSubmitted: (_) async =>
-                await controller.onLoginButtonPressed(),
+                await controller.onLoginButtonPressed(setState),
             controller: controller.passwordTextEditingController,
           ),
           divider,
