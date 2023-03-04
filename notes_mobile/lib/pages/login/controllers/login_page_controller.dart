@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:notes_mobile/utils/validation_helper.dart';
 
 class LoginPageController {
+  final loginFormKey = GlobalKey<FormState>();
   final emailTextEditingController = TextEditingController();
   final passwordTextEditingController = TextEditingController();
   String get email => emailTextEditingController.text;
