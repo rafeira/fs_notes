@@ -32,6 +32,10 @@ class _LoginPageState extends State<LoginPage> {
             title: 'Login',
           ),
           divider,
+          DefaultCircularProgressIndicator(
+            divider: divider,
+            isBig: isLoading,
+          ),
           AuthTextField(
             hintText: 'email@email.com',
             suffix: const Icon(
