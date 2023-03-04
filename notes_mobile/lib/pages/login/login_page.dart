@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:notes_mobile/globals/widgets/default_circular_progress_indicator.dart';
 import 'package:notes_mobile/globals/widgets/default_scaffold.dart';
 import 'package:notes_mobile/pages/login/controllers/login_page_controller.dart';
 import 'package:notes_mobile/pages/login/local_widgets/auth_text_field.dart';
 import 'package:notes_mobile/pages/login/local_widgets/auth_title.dart';
+import 'package:notes_mobile/pages/login/local_widgets/default_button.dart';
 
-class LoginPage extends StatelessWidget {
-  LoginPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   final controller = LoginPageController();
+
   final divider = const SizedBox(
     height: 30,
   );
