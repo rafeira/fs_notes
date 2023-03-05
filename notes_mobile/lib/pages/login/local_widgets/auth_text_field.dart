@@ -34,6 +34,8 @@ class AuthTextField extends StatelessWidget {
           contentPadding: const EdgeInsets.symmetric(horizontal: 10.0),
           suffix: suffix,
           hintText: hintText,
+          errorStyle:
+              const TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
           label: label == null
               ? null
               : Text(
