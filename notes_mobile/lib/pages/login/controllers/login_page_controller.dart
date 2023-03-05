@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:notes_mobile/data/hive/credentials_repository.dart';
+import 'package:notes_mobile/routes/main/main_paths.dart';
 import 'package:notes_mobile/utils/validation_helper.dart';
 
 class LoginPageController {
@@ -8,7 +10,12 @@ class LoginPageController {
   String get email => emailTextEditingController.text;
   String get password => passwordTextEditingController.text;
 
+  final _credentialsRepository = CredentialsRepository();
+
+  final BuildContext context;
   bool isLoading = false;
+
+  LoginPageController({required this.context});
   Future<void> onLoginButtonPressed(
       void Function(void Function() fn) setState) async {
     if (loginFormKey.currentState!.validate()) {

@@ -14,12 +14,17 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final controller = LoginPageController();
+  late LoginPageController controller;
 
   final divider = const SizedBox(
     height: 30,
   );
   bool get isLoading => controller.isLoading;
+  @override
+  void initState() {
+    controller = LoginPageController(context: context)..setCredentials();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
