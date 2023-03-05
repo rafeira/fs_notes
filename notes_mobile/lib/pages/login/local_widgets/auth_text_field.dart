@@ -10,7 +10,8 @@ class AuthTextField extends StatelessWidget {
       this.label,
       this.validator,
       this.onFieldSubmitted,
-      this.isTextObscure = false, this.enabled});
+      this.isTextObscure = false,
+      this.enabled});
   final String? hintText;
   final TextEditingController controller;
   final Widget? suffix;
