@@ -23,10 +23,17 @@ class LoginPageController {
     if (loginFormKey.currentState!.validate()) {
       setState(loadPage);
       if (await _auth()) {
+        await _saveCredentials();
         await _navigate(MainPaths.noteList);
       }
       setState(stopLoadPage);
     }
+  }
+
+  Future<void> _saveCredentials() async {
+    await _credentialsRepository.setUsername(email);
+    await _credentialsRepository.setPassword(password);
+    await _credentialsRepository.closeBox();
   }
 
   Future<void> onEmailFieldSubmitted() async {
