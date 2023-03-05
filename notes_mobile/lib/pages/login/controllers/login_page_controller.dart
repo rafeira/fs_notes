@@ -30,6 +30,16 @@ class LoginPageController {
     }
   }
 
+  setCredentials() async {
+    await _credentialsRepository.openBox();
+    final username = _credentialsRepository.getUsername();
+    final password = _credentialsRepository.getPassword();
+    if (username != null && password != null) {
+      emailTextEditingController.text = username;
+      passwordTextEditingController.text = password;
+    }
+  }
+
   Future<void> _saveCredentials() async {
     await _credentialsRepository.setUsername(email);
     await _credentialsRepository.setPassword(password);
