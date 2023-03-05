@@ -20,7 +20,9 @@ class LoginPageController {
       void Function(void Function() fn) setState) async {
     if (loginFormKey.currentState!.validate()) {
       setState(loadPage);
-      await Future.delayed(const Duration(seconds: 30));
+      if (await _auth()) {
+        await _navigate(MainPaths.noteList);
+      }
       setState(stopLoadPage);
     }
   }
