@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:notes_mobile/data/hive/local_home_page_repository.dart';
 
 class SplashPageController {
   late AnimationController _positionAnimationController;
@@ -11,6 +13,8 @@ class SplashPageController {
   late Animation<double> sizeAnimation;
   final _sizeAnimationDuration = const Duration(seconds: 1);
   final _initialSize = 50.0;
+
+  final _localHomePageRepository = LocalHomePageRepository();
   double get _finalSize => 200;
 
   Size get _screenSize =>
@@ -52,8 +56,8 @@ class SplashPageController {
   }
 
   void startAnimations(BuildContext context) {
-    _animatePosition().then((_) => _animateSize()).then((_) => Future.delayed(
-        const Duration(seconds: 1), () => _navigateToLogin(context)));
+    _animatePosition().then((_) => _animateSize()).then((_) =>
+        Future.delayed(const Duration(seconds: 1), () => _navigate(context)));
   }
 
   TickerFuture _animatePosition() {
@@ -64,7 +68,15 @@ class SplashPageController {
     return _sizeAnimationController.forward();
   }
 
-  void _navigateToLogin(BuildContext context) {
-    Navigator.of(context).pushNamed('/login');
+  Future<void> _navigate(BuildContext context) async {
+    await Navigator.of(context).pushNamed(await _homePage());
+  }
+
+  Future<String> _homePage() async {
+    await Hive.initFlutter();
+    await _localHomePageRepository.openBox();
+    final home = _localHomePageRepository.getHome();
+    await _localHomePageRepository.closeBox();
+    return home;
   }
 }
