@@ -54,4 +54,13 @@ class LoginPageController {
     if (value.length < 6) return 'Quantidade mínima de caracteres (6)!';
     return null;
   }
+
+  Future<bool> _auth() async {
+    await Future.delayed(const Duration(seconds: 5));
+    return true;
+  }
+
+  Future<void> _navigate(String route) async {
+    await Navigator.of(context).pushNamed(route);
+  }
 }
