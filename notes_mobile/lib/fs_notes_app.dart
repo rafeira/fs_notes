@@ -10,6 +10,7 @@ class FSNotesApp extends StatelessWidget {
     return MaterialApp(
       home: const SplashPage(),
       routes: MainRoutes.routes,
+      theme: ThemeData(fontFamily: 'TiltWarp'),
     );
   }
 }
