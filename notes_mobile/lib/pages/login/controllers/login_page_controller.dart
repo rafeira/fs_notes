@@ -43,7 +43,6 @@ class LoginPageController {
   Future<void> _saveCredentials() async {
     await _credentialsRepository.setUsername(email);
     await _credentialsRepository.setPassword(password);
-    await _credentialsRepository.closeBox();
   }
 
   Future<void> onEmailFieldSubmitted() async {
