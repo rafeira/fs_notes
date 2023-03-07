@@ -59,11 +59,15 @@ class _LoginPageState extends State<LoginPage> {
           divider,
           AuthTextField(
             hintText: 'senha',
-            suffix: const Icon(
-              Icons.password,
+            suffix: IconButton(
+              icon: Icon(controller.isPasswordVisible
+                  ? Icons.visibility
+                  : Icons.visibility_off),
+              onPressed: () =>
+                  controller.onPasswordVisibilityButtonPressed(setState),
               color: Colors.blue,
             ),
-            isTextObscure: true,
+            isTextObscure: !controller.isPasswordVisible,
             label: 'Senha',
             enabled: !isLoading,
             textInputType: TextInputType.visiblePassword,

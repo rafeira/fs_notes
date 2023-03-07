@@ -16,6 +16,8 @@ class LoginPageController {
 
   var isRememberActive = false;
 
+  var isPasswordVisible = false;
+
   final BuildContext context;
   bool isLoading = false;
 
@@ -61,6 +63,11 @@ class LoginPageController {
 
   void onRememberCheckboxChanged(bool? value) {
     isRememberActive = value ?? false;
+  }
+
+  void onPasswordVisibilityButtonPressed(
+      void Function(void Function() fn) setState) {
+    setState(() => isPasswordVisible = !isPasswordVisible);
   }
 
   void loadPage() {
