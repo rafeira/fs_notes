@@ -5,6 +5,7 @@ import 'package:notes_mobile/pages/login/controllers/login_page_controller.dart'
 import 'package:notes_mobile/pages/login/local_widgets/auth_text_field.dart';
 import 'package:notes_mobile/pages/login/local_widgets/auth_title.dart';
 import 'package:notes_mobile/pages/login/local_widgets/default_button.dart';
+import 'package:notes_mobile/pages/login/local_widgets/save_credentials_checkbox.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -70,6 +71,10 @@ class _LoginPageState extends State<LoginPage> {
             onFieldSubmitted: (_) async =>
                 await controller.onLoginButtonPressed(setState),
             controller: controller.passwordTextEditingController,
+          ),
+          divider,
+          SaveCredentialsCheckbox(
+            onChanged: controller.onRememberCheckboxChanged,
           ),
           divider,
           Align(
