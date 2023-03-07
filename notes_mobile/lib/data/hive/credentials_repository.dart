@@ -22,4 +22,8 @@ class CredentialsRepository extends HiveRepository<String> {
   Future<void> setPassword(String value) async {
     return await box!.put(passwordKey, value);
   }
+
+  Future<void> clearCredentials() async {
+    await box!.clear();
+  }
 }
