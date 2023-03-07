@@ -14,6 +14,8 @@ class LoginPageController {
 
   final _credentialsRepository = CredentialsRepository();
 
+  var isRememberActive = false;
+
   final BuildContext context;
   bool isLoading = false;
 
@@ -41,8 +43,12 @@ class LoginPageController {
   }
 
   Future<void> _saveCredentials() async {
-    await _credentialsRepository.setUsername(email);
-    await _credentialsRepository.setPassword(password);
+    if (isRememberActive) {
+      await _credentialsRepository.setUsername(email);
+      await _credentialsRepository.setPassword(password);
+    } else {
+      await _credentialsRepository.clearCredentials();
+    }
   }
 
   Future<void> onEmailFieldSubmitted() async {
@@ -51,6 +57,10 @@ class LoginPageController {
 
   Future<void> onPasswordFieldSubmitted() async {
     // await onLoginButtonPressed();
+  }
+
+  void onRememberCheckboxChanged(bool? value) {
+    isRememberActive = value ?? false;
   }
 
   void loadPage() {
@@ -74,7 +84,7 @@ class LoginPageController {
   }
 
   Future<bool> _auth() async {
-    await Future.delayed(const Duration(seconds: 5));
+    await Future.delayed(const Duration(seconds: 2));
     return true;
   }
 
