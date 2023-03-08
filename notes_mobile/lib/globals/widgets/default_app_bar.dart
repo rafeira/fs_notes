@@ -7,7 +7,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   final double? elevation;
   final List<Widget>? actions;
   @override
-  Size get preferredSize => const Size.fromHeight(60);
+  Size get preferredSize => const Size.fromHeight(40);
   @override
   Widget build(BuildContext context) {
     return AppBar(
