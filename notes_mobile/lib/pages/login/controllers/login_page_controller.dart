@@ -14,7 +14,7 @@ class LoginPageController {
 
   final _credentialsRepository = CredentialsRepository();
 
-  var isRememberActive = false;
+  var isRememberActive = true;
 
   var isPasswordVisible = false;
 
