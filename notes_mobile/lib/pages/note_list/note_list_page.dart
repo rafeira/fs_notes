@@ -5,7 +5,9 @@ import 'package:notes_mobile/pages/note_list/local_widgets/note_list_item.dart';
 
 class NoteListPage extends StatelessWidget {
   const NoteListPage({super.key});
-
+  final divider = const SizedBox(
+    height: 10,
+  );
   @override
   Widget build(BuildContext context) {
     return DefaultScaffold(
