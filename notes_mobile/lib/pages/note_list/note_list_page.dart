@@ -27,7 +27,7 @@ class NoteListPage extends StatelessWidget {
           Align(
             alignment: Alignment.centerLeft,
             child: DefaultButton(
-              onTap: () => false,
+              onTap: () => controller.navigateToLogin(context),
               title: 'Adicionar',
             ),
           ),
@@ -47,7 +47,7 @@ class NoteListPage extends StatelessWidget {
           ),
           divider,
           DefaultButton(
-            onTap: () => false,
+            onTap: () => controller.navigateToLogin(context),
             title: '+',
           )
         ],
