@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes_mobile/data/models/note.dart';
 import 'package:notes_mobile/globals/widgets/default_app_bar.dart';
 import 'package:notes_mobile/globals/widgets/default_scaffold.dart';
 import 'package:notes_mobile/globals/widgets/default_title.dart';
@@ -12,6 +13,7 @@ class NoteListPage extends StatelessWidget {
     height: 10,
   );
   final controller = NoteListPageController();
+  List<Note> get noteList => controller.noteList;
   @override
   Widget build(BuildContext context) {
     return DefaultScaffold(
@@ -35,14 +37,20 @@ class NoteListPage extends StatelessWidget {
           Flexible(
             child: ListView.builder(
               shrinkWrap: true,
-              itemCount: 10,
-              itemBuilder: (context, index) => Dismissible(
-                direction: DismissDirection.startToEnd,
-                key: Key(index.toString()),
-                child: NoteListItem(
-                  key: Key(index.toString()),
-                ),
-              ),
+              itemCount: controller.noteList.length,
+              physics: const BouncingScrollPhysics(
+                  decelerationRate: ScrollDecelerationRate.fast),
+              itemBuilder: (_, i) {
+                return Dismissible(
+                  direction: DismissDirection.startToEnd,
+                  key: Key(i.toString()),
+                  child: NoteListItem(
+                    title: noteList[i].title,
+                    content: noteList[i].content,
+                    key: Key(i.toString()),
+                  ),
+                );
+              },
             ),
           ),
           divider,
