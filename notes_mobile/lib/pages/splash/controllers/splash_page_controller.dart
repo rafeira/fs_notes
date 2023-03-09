@@ -69,7 +69,7 @@ class SplashPageController {
   }
 
   Future<void> _navigate(BuildContext context) async {
-    await Navigator.of(context).pushNamed(await _homePage());
+    await Navigator.of(context).pushReplacementNamed(await _homePage());
   }
 
   Future<String> _homePage() async {
