@@ -79,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
           divider,
           SaveCredentialsCheckbox(
             onChanged: controller.onRememberCheckboxChanged,
-            value: controller.isRememberActive,
+            initialValue: controller.isRememberActive,
           ),
           divider,
           Align(
