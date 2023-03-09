@@ -2,17 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:notes_mobile/themes/main_theme.dart';
 
 class SaveCredentialsCheckbox extends StatefulWidget {
-  SaveCredentialsCheckbox({super.key, this.onChanged, required this.value});
+  const SaveCredentialsCheckbox(
+      {super.key, this.onChanged, required this.initialValue});
   final void Function(bool?)? onChanged;
-  bool value;
+  final bool initialValue;
   @override
   State<SaveCredentialsCheckbox> createState() =>
       _SaveCredentialsCheckboxState();
 }
 
 class _SaveCredentialsCheckboxState extends State<SaveCredentialsCheckbox> {
+  var value = false;
   @override
   void initState() {
+    value = widget.initialValue;
     super.initState();
   }
 
@@ -24,17 +27,17 @@ class _SaveCredentialsCheckboxState extends State<SaveCredentialsCheckbox> {
       title: AnimatedDefaultTextStyle(
           duration: const Duration(milliseconds: 300),
           style: TextStyle(
-              color: widget.value ? Colors.green : Colors.white,
+              color: value ? Colors.green : Colors.white,
               fontFamily: MainTheme.tiltWarpFontFamily),
           child: const Text('Relembrar-me?')),
-      value: widget.value,
+      value: value,
     );
   }
 
   void onValuChanged(bool? value) {
     setState(() {
-      widget.value = value!;
+      this.value = value!;
     });
-    widget.onChanged!(value);
+    widget.onChanged?.call(value);
   }
 }
