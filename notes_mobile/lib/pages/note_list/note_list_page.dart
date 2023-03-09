@@ -4,12 +4,14 @@ import 'package:notes_mobile/globals/widgets/default_scaffold.dart';
 import 'package:notes_mobile/globals/widgets/default_title.dart';
 import 'package:notes_mobile/pages/login/local_widgets/default_button.dart';
 import 'package:notes_mobile/pages/note_list/local_widgets/note_list_item.dart';
+import 'package:notes_mobile/pages/note_list/note_list_page_controller.dart';
 
 class NoteListPage extends StatelessWidget {
-  const NoteListPage({super.key});
+  NoteListPage({super.key});
   final divider = const SizedBox(
     height: 10,
   );
+  final controller = NoteListPageController();
   @override
   Widget build(BuildContext context) {
     return DefaultScaffold(
