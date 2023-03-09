@@ -9,6 +9,6 @@ class MainRoutes {
   static Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
     MainPaths.splash: (context) => const SplashPage(),
     MainPaths.login: (context) => const LoginPage(),
-    MainPaths.noteList: (context) => const NoteListPage(),
+    MainPaths.noteList: (context) => NoteListPage(),
   };
 }
