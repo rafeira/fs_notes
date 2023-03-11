@@ -45,8 +45,8 @@ class _DefaultButtonState extends State<DefaultButton> {
       borderRadius: BorderRadius.circular(widget.radius),
       child: InkWell(
         onTap: widget.onTap,
-        onTapDown: _onTapDown,
-        onTapUp: _onTapUp,
+        onTapDown: widget.onTapDown != null ? _onTapDown : null,
+        onTapUp: widget.onTapUp != null ? _onTapUp : null,
         borderRadius: BorderRadius.circular(widget.radius),
         splashColor: widget.splashColor,
         child: Container(
