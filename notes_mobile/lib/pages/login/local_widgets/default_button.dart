@@ -32,6 +32,8 @@ class _DefaultButtonState extends State<DefaultButton> {
     return widget.onTap == null;
   }
 
+  final _loadingColor = const Color.fromARGB(255, 70, 69, 69);
+
   var isSplashing = false;
 
   @override
