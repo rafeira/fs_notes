@@ -96,6 +96,6 @@ class LoginPageController {
   }
 
   Future<void> _navigate(String route) async {
-    await Navigator.of(context).pushNamed(route);
+    await Navigator.of(context).pushReplacementNamed(route);
   }
 }
