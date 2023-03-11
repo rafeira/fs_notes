@@ -8,4 +8,9 @@ class NoteListPageController {
   Future<void> navigate(BuildContext context) async {
     await Navigator.pushNamed(context, MainPaths.newNote);
   }
+
+  Future<void> onSyncButtonPressed(BuildContext context) async {
+    await Future.delayed(const Duration(seconds: 1));
+    await _navigateToLogin(context);
+  }
 }

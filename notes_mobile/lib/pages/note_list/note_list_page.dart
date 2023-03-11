@@ -34,7 +34,7 @@ class NoteListPage extends StatelessWidget {
                 title: 'Adicionar',
               ),
               DefaultButton(
-                onTap: () => false,
+                onTap: () => controller.onSyncButtonPressed(context),
                 borderColor: const Color.fromARGB(255, 26, 117, 4),
                 titleColor: const Color.fromARGB(255, 49, 107, 67),
                 backgroundColor: Colors.grey,
