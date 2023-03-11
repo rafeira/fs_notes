@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class DefaultButton extends StatelessWidget {
+class DefaultButton extends StatefulWidget {
   const DefaultButton(
       {super.key,
       this.title = 'CLIQUE',
@@ -10,7 +10,9 @@ class DefaultButton extends StatelessWidget {
       this.borderColor = const Color.fromARGB(255, 6, 89, 9),
       this.radius = 20,
       this.borderWidth = 2.0,
-      this.onTap});
+      this.onTap,
+      this.onTapDown,
+      this.onTapUp});
   final String title;
   final Color titleColor;
   final Color backgroundColor;
@@ -19,35 +21,63 @@ class DefaultButton extends StatelessWidget {
   final double radius;
   final double borderWidth;
   final GestureTapCallback? onTap;
+  final GestureTapDownCallback? onTapDown;
+  final GestureTapUpCallback? onTapUp;
+  @override
+  State<DefaultButton> createState() => _DefaultButtonState();
+}
+
+class _DefaultButtonState extends State<DefaultButton> {
   bool get isDisabled {
-    return onTap == null;
+    return widget.onTap == null;
   }
+
+  var isSplashing = false;
 
   @override
   Widget build(BuildContext context) {
-    final titleStyle =
-        TextStyle(color: titleColor, fontSize: 15, fontWeight: FontWeight.w700);
+    final titleStyle = TextStyle(
+        color: isSplashing
+            ? const Color.fromARGB(255, 255, 255, 255)
+            : widget.titleColor,
+        fontSize: 15,
+        fontWeight: FontWeight.w700);
     return Material(
-      color: isDisabled ? Colors.grey : backgroundColor,
-      borderRadius: BorderRadius.circular(radius),
+      color: isDisabled ? Colors.grey : widget.backgroundColor,
+      borderRadius: BorderRadius.circular(widget.radius),
       child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(radius),
-        splashColor: splashColor,
+        onTap: widget.onTap,
+        onTapDown: _onTapDown,
+        onTapUp: _onTapUp,
+        borderRadius: BorderRadius.circular(widget.radius),
+        splashColor: widget.splashColor,
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 7.5),
-          decoration: BoxDecoration(
-              color: Colors.transparent,
-              border: Border.all(
-                  width: borderWidth,
-                  color: isDisabled ? Colors.grey[700]! : borderColor),
-              borderRadius: BorderRadius.circular(radius)),
-          child: Text(
-            title.toUpperCase(),
-            style: titleStyle,
-          ),
-        ),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 15.0, vertical: 7.5),
+            decoration: BoxDecoration(
+                color: Colors.transparent,
+                border: Border.all(
+                    width: widget.borderWidth,
+                    color: isDisabled ? Colors.grey[700]! : widget.borderColor),
+                borderRadius: BorderRadius.circular(widget.radius)),
+            child: AnimatedDefaultTextStyle(
+              duration: const Duration(milliseconds: 200),
+              style: titleStyle,
+              child: Text(
+                widget.title.toUpperCase(),
+              ),
+            )),
       ),
     );
+  }
+
+  void _onTapDown(TapDownDetails details) {
+    setState(() => isSplashing = true);
+    widget.onTapDown?.call(details);
+  }
+
+  void _onTapUp(TapUpDetails details) {
+    setState(() => isSplashing = false);
+    widget.onTapUp?.call(details);
   }
 }
