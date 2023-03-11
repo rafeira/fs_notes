@@ -26,12 +26,22 @@ class NoteListPage extends StatelessWidget {
             fontSize: 25,
           ),
           divider,
-          Align(
-            alignment: Alignment.centerLeft,
-            child: DefaultButton(
-              onTap: () => controller.navigate(context),
-              title: 'Adicionar',
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              DefaultButton(
+                onTap: () => controller.navigate(context),
+                title: 'Adicionar',
+              ),
+              DefaultButton(
+                onTap: () => false,
+                borderColor: const Color.fromARGB(255, 26, 117, 4),
+                titleColor: const Color.fromARGB(255, 49, 107, 67),
+                backgroundColor: Colors.grey,
+                splashColor: const Color.fromARGB(255, 2, 59, 10),
+                title: 'Sincronizar',
+              ),
+            ],
           ),
           divider,
           Flexible(
