@@ -39,11 +39,7 @@ class _DefaultButtonState extends State<DefaultButton> {
   @override
   Widget build(BuildContext context) {
     final titleStyle = TextStyle(
-        color: isSplashing
-            ? const Color.fromARGB(255, 255, 255, 255)
-            : widget.titleColor,
-        fontSize: 15,
-        fontWeight: FontWeight.w700);
+        color: _titleColor(), fontSize: 15, fontWeight: FontWeight.w700);
     return Material(
       color: isDisabled ? Colors.grey : widget.backgroundColor,
       borderRadius: BorderRadius.circular(widget.radius),
@@ -81,5 +77,15 @@ class _DefaultButtonState extends State<DefaultButton> {
   void _onTapUp(TapUpDetails details) {
     setState(() => isSplashing = false);
     widget.onTapUp?.call(details);
+  }
+
+  Color _titleColor() {
+    if (widget.onTap != null) {
+      return isSplashing
+          ? const Color.fromARGB(255, 255, 255, 255)
+          : widget.titleColor;
+    } else {
+      return _loadingColor;
+    }
   }
 }
