@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:notes_mobile/globals/widgets/default_app_bar.dart';
 import 'package:notes_mobile/globals/widgets/default_scaffold.dart';
 import 'package:notes_mobile/globals/widgets/default_title.dart';
+import 'package:notes_mobile/pages/login/local_widgets/default_button.dart';
 import 'package:notes_mobile/pages/new_note/controllers/new_note_page_controller.dart';
 import 'package:notes_mobile/pages/new_note/local_widges/note_form_field.dart';
 
@@ -32,9 +33,20 @@ class NewNotePage extends StatelessWidget {
               const NoteFormField(
                 maxLines: 5,
                 label: 'Conteúdo',
-              )
+              ),
+              _divider,
+              Align(
+                  child: DefaultButton(
+                title: 'Criar anotação',
+                onTap: () => onCreateNoteButtonPressed(context),
+              ))
             ],
           ),
         ));
+  }
+
+  Future<void> onCreateNoteButtonPressed(BuildContext context) async {
+    final navigatorState = Navigator.of(context);
+    await controller.onCreateAnotationButtonPressed(navigatorState);
   }
 }
