@@ -13,6 +13,6 @@ class MainRoutes {
     MainPaths.login: (context) => const LoginPage(),
     MainPaths.noteList: (context) => NoteListPage(),
     MainPaths.newNote: (context) => NewNotePage(),
-    MainPaths.defaultMessage: (context) => DefaultMessagePage(),
+    MainPaths.defaultMessage: (context) => const DefaultMessagePage(),
   };
 }
