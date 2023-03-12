@@ -11,7 +11,7 @@ class MainRoutes {
   static Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
     MainPaths.splash: (context) => const SplashPage(),
     MainPaths.login: (context) => const LoginPage(),
-    MainPaths.noteList: (context) => NoteListPage(),
+    MainPaths.noteList: (context) => const NoteListPage(),
     MainPaths.newNote: (context) => NewNotePage(),
     MainPaths.defaultMessage: (context) => const DefaultMessagePage(),
   };
