@@ -15,7 +15,7 @@ class NoteListPageController {
     final model = DefaultMessageArguments(
         assetImage: '',
         message: 'Ola mundo',
-        confirmButtonCallback: () => print('confirm'));
+        confirmButtonCallback: () => debugPrint('ok'));
     await DefaultMessageNavigatorHelper.navigate(
         navigatorState: navigatorState, model: model);
   }
