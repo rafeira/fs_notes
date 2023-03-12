@@ -3,11 +3,15 @@ import 'package:notes_mobile/globals/widgets/default_app_bar.dart';
 import 'package:notes_mobile/globals/widgets/default_scaffold.dart';
 import 'package:notes_mobile/globals/widgets/default_title.dart';
 import 'package:notes_mobile/pages/new_note/controllers/new_note_page_controller.dart';
+import 'package:notes_mobile/pages/new_note/local_widges/note_form_field.dart';
 
 class NewNotePage extends StatelessWidget {
   NewNotePage({super.key});
   final controller = NewNotePageController();
   GlobalKey<FormState> get formKey => controller.formKey;
+  final _divider = const SizedBox(
+    height: 9.0,
+  );
   @override
   Widget build(BuildContext context) {
     return DefaultScaffold(
@@ -18,29 +22,19 @@ class NewNotePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisSize: MainAxisSize.max,
-            children: const [
-              Align(child: DefaultTitle(text: 'Crie sua anotação')),
-              TitleFormField(),
-              TitleFormField()
+            children: [
+              const Align(child: DefaultTitle(text: 'Crie sua anotação')),
+              _divider,
+              const NoteFormField(
+                label: 'Título',
+              ),
+              _divider,
+              const NoteFormField(
+                maxLines: 5,
+                label: 'Conteúdo',
+              )
             ],
           ),
         ));
-  }
-}
-
-class TitleFormField extends StatelessWidget {
-  const TitleFormField({super.key});
-  final border = const OutlineInputBorder(
-      borderSide: BorderSide(width: .8, color: Colors.black));
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      decoration: InputDecoration(
-          focusColor: Colors.amber,
-          hoverColor: Colors.amber,
-          enabledBorder: border,
-          focusedBorder: border,
-          border: border),
-    );
   }
 }
