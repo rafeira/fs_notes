@@ -8,9 +8,9 @@ class NoteFormField extends StatelessWidget {
   final TextEditingController? controller;
   final FormFieldValidator<String>? validator;
 
-  final focusedBorder = const OutlineInputBorder(
-      borderSide:
-          BorderSide(width: .8, color: Color.fromARGB(255, 233, 233, 233)));
+  OutlineInputBorder _border(Color color) =>
+      OutlineInputBorder(borderSide: BorderSide(width: .8, color: color));
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -22,10 +22,11 @@ class NoteFormField extends StatelessWidget {
         fillColor: Colors.red,
         label: _label(),
         alignLabelWithHint: true,
-        enabledBorder: enabledBorder,
-        focusColor: Colors.red,
+        enabledBorder: _border(const Color.fromARGB(255, 102, 100, 100)),
+        errorBorder: _border(Colors.red),
+        focusedErrorBorder: _border(const Color.fromARGB(255, 250, 151, 151)),
         floatingLabelStyle: const TextStyle(color: Colors.white),
-        focusedBorder: focusedBorder,
+        focusedBorder: _border(Colors.white),
       ),
     );
   }
