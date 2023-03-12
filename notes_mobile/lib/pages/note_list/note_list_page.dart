@@ -64,10 +64,11 @@ class NoteListPage extends StatelessWidget {
             ),
           ),
           divider,
-          DefaultButton(
-            onTap: () => controller.navigate(context),
-            title: '+',
-          )
+          if (noteList.isNotEmpty)
+            DefaultButton(
+              onTap: () => onPlusButtonPressed(context),
+              title: '+',
+            )
         ],
       ),
     );
