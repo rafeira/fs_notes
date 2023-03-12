@@ -62,7 +62,9 @@ class _NoteListPageState extends State<NoteListPage> {
               itemBuilder: (_, i) {
                 return Dismissible(
                   direction: DismissDirection.startToEnd,
-                  key: Key(i.toString()),
+                  onDismissed: (_) {
+                    setState(() => controller.onNoteCardDismissed(noteList[i]));
+                  },
                   key: UniqueKey(),
                   child: NoteListItem(
                     title: noteList[i].title,

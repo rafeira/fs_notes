@@ -49,4 +49,8 @@ class NoteListPageController {
     if (note is Note) return note;
     return null;
   }
+
+  void onNoteCardDismissed(Note note) {
+    noteList.remove(note);
+  }
 }
