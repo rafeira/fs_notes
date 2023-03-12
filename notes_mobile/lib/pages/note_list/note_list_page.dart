@@ -76,12 +76,12 @@ class NoteListPage extends StatelessWidget {
 
   Future<void> onPlusButtonPressed(BuildContext context) async {
     final navigatorState = Navigator.of(context);
-    await controller.onPlusButtonPressed(navigatorState);
+    await controller.onPlusButtonPressed(navigatorState, setState);
   }
 
   Future<void> onAddButtonPressed(BuildContext context) async {
     final navigatorState = Navigator.of(context);
-    await controller.onAddButtonPressed(navigatorState);
+    await controller.onAddButtonPressed(navigatorState, setState);
   }
 
   void onSyncButtonPressed(BuildContext context) {
