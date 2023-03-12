@@ -7,12 +7,20 @@ import 'package:notes_mobile/routes/main/main_paths.dart';
 class NoteListPageController {
   final noteList = <Note>[];
 
-  Future<void> onPlusButtonPressed(NavigatorState navigatorState) async {
-    await _navigateToNewNotePage(navigatorState);
+  Future<void> onPlusButtonPressed(NavigatorState navigatorState,
+      void Function(void Function()) setState) async {
+    final note = await _navigateToNewNotePage(navigatorState);
+    if (note != null) {
+      setState(() => noteList.add(note));
+    }
   }
 
-  Future<void> onAddButtonPressed(NavigatorState navigatorState) async {
-    await _navigateToNewNotePage(navigatorState);
+  Future<void> onAddButtonPressed(NavigatorState navigatorState,
+      void Function(void Function()) setState) async {
+    final note = await _navigateToNewNotePage(navigatorState);
+    if (note != null) {
+      setState(() => noteList.add(note));
+    }
   }
 
   Future<void> _navigateToNotLoggedMessage(
