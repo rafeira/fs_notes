@@ -36,7 +36,9 @@ class NoteListPageController {
     return false;
   }
 
-  Future<void> _navigateToNewNotePage(NavigatorState navigatorState) async {
-    await navigatorState.pushNamed(MainPaths.newNote);
+  Future<Note?> _navigateToNewNotePage(NavigatorState navigatorState) async {
+    final note = await navigatorState.pushNamed(MainPaths.newNote);
+    if (note is Note) return note;
+    return null;
   }
 }
