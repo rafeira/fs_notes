@@ -36,7 +36,6 @@ class TitleFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       decoration: InputDecoration(
-        
           focusColor: Colors.amber,
           hoverColor: Colors.amber,
           enabledBorder: border,

@@ -9,4 +9,3 @@ class DefaultMessageNavigatorHelper {
     await navigatorState.pushNamed(MainPaths.defaultMessage, arguments: model);
   }
 }
-

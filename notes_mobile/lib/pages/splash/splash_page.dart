@@ -10,7 +10,6 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
-
   final _controller = SplashPageController();
   @override
   void initState() {
@@ -18,7 +17,6 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     super.initState();
     _controller.startAnimations(context);
   }
-
 
   @override
   void dispose() {
