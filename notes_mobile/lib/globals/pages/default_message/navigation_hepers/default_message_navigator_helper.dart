@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:notes_mobile/globals/pages/default%20_message/navigation_hepers/arguments/default_message_arguments.dart';
+import 'package:notes_mobile/globals/pages/default_message/navigation_hepers/arguments/default_message_arguments.dart';
 import 'package:notes_mobile/routes/main/main_paths.dart';
 
 class DefaultMessageNavigatorHelper {

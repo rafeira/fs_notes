@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:notes_mobile/data/models/note.dart';
-import 'package:notes_mobile/globals/pages/default%20_message/navigation_hepers/arguments/default_message_arguments.dart';
-import 'package:notes_mobile/globals/pages/default%20_message/navigation_hepers/default_message_navigator_helper.dart';
+import 'package:notes_mobile/globals/pages/default_message/navigation_hepers/arguments/default_message_arguments.dart';
+import 'package:notes_mobile/globals/pages/default_message/navigation_hepers/default_message_navigator_helper.dart';
 
 class NoteListPageController {
   final noteList = <Note>[];
