@@ -63,10 +63,10 @@ class _NoteListPageState extends State<NoteListPage> {
                 return Dismissible(
                   direction: DismissDirection.startToEnd,
                   key: Key(i.toString()),
+                  key: UniqueKey(),
                   child: NoteListItem(
                     title: noteList[i].title,
                     content: noteList[i].content,
-                    key: Key(i.toString()),
                   ),
                 );
               },
