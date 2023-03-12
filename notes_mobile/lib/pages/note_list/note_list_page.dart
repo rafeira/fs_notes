@@ -7,13 +7,22 @@ import 'package:notes_mobile/pages/login/local_widgets/default_button.dart';
 import 'package:notes_mobile/pages/note_list/local_widgets/note_list_item.dart';
 import 'package:notes_mobile/pages/note_list/note_list_page_controller.dart';
 
-class NoteListPage extends StatelessWidget {
-  NoteListPage({super.key});
+class NoteListPage extends StatefulWidget {
+  const NoteListPage({super.key});
+
+  @override
+  State<NoteListPage> createState() => _NoteListPageState();
+}
+
+class _NoteListPageState extends State<NoteListPage> {
   final divider = const SizedBox(
     height: 10,
   );
+
   final controller = NoteListPageController();
+
   List<Note> get noteList => controller.noteList;
+
   @override
   Widget build(BuildContext context) {
     return DefaultScaffold(
