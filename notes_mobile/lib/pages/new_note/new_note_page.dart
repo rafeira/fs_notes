@@ -13,6 +13,10 @@ class NewNotePage extends StatelessWidget {
   final _divider = const SizedBox(
     height: 9.0,
   );
+  TextEditingController get titleEditingController =>
+      controller.titleEditingController;
+  TextEditingController get contentEditingController =>
+      controller.contentEditingController;
   @override
   Widget build(BuildContext context) {
     return DefaultScaffold(
@@ -26,12 +30,15 @@ class NewNotePage extends StatelessWidget {
             children: [
               const Align(child: DefaultTitle(text: 'Crie sua anotação')),
               _divider,
-              const NoteFormField(
-                label: 'Título',
-              ),
+              NoteFormField(
+                  controller: titleEditingController,
+                  label: 'Título',
+                  validator: controller.titleValidator),
               _divider,
-              const NoteFormField(
+              NoteFormField(
+                controller: contentEditingController,
                 maxLines: 5,
+                validator: controller.contentValidator,
                 label: 'Conteúdo',
               ),
               _divider,
