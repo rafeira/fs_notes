@@ -6,4 +6,14 @@ class NewNotePageController {
   final titleEditingController = TextEditingController();
   final contentEditingController = TextEditingController();
   Note? note;
+  String? titleValidator(String? value) {
+    if (value == null || value.isEmpty) return 'Insira um título válido!';
+    return null;
+  }
+
+  String? contentValidator(String? value) {
+    if (value == null || value.isEmpty) return 'Insira um conteúdo válido!';
+    return null;
+  }
+
 }
