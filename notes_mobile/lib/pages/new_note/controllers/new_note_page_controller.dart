@@ -16,4 +16,13 @@ class NewNotePageController {
     return null;
   }
 
+  Future<void> onCreateAnotationButtonPressed(
+      NavigatorState navigatorState) async {
+    if (formKey.currentState!.validate()) {
+      note = Note(
+          title: titleEditingController.text,
+          content: contentEditingController.text);
+      navigatorState.pop(note!);
+    }
+  }
 }
