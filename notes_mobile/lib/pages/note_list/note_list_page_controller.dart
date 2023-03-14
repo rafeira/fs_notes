@@ -1,4 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/widgets.dart';
+import 'package:hive/hive.dart';
+import 'package:notes_mobile/data/hive/notes/local_notes_repository.dart';
 import 'package:notes_mobile/data/models/note.dart';
 import 'package:notes_mobile/globals/pages/default_message/navigation_hepers/arguments/default_message_arguments.dart';
 import 'package:notes_mobile/globals/pages/default_message/navigation_hepers/default_message_navigator_helper.dart';
@@ -7,8 +11,8 @@ import 'package:notes_mobile/routes/main/main_paths.dart';
 class NoteListPageController {
   final noteList = <Note>[];
   final _localNotesRepository = LocalNotesRepository();
-  Future<void> onPlusButtonPressed(NavigatorState navigatorState,
-      void Function(void Function()) setState) async {
+  Future<void> onPlusButtonPressed(
+      NavigatorState navigatorState, StateSetter setState) async {
     final note = await _navigateToNewNotePage(navigatorState);
     if (note != null) {
       await _openNotesBox();
@@ -35,6 +39,8 @@ class NoteListPageController {
     }
   }
 
+  Future<void> onAddButtonPressed(
+      NavigatorState navigatorState, StateSetter setState) async {
     final note = await _navigateToNewNotePage(navigatorState);
     if (note != null) {
       setState(() => noteList.add(note));
