@@ -11,6 +11,7 @@ class NoteListPageController {
       void Function(void Function()) setState) async {
     final note = await _navigateToNewNotePage(navigatorState);
     if (note != null) {
+      await _openNotesBox();
       setState(() => noteList.add(note));
     }
   }
@@ -24,6 +25,13 @@ class NoteListPageController {
       noteList.addAll(notes);
     } on HiveError {
       rethrow;
+    }
+  }
+
+  Future<void> _openNotesBox() async {
+    final isBoxOpen = _localNotesRepository.isOpen();
+    if (!isBoxOpen) {
+      await _localNotesRepository.openBox();
     }
   }
 
