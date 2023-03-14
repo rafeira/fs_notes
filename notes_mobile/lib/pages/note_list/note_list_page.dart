@@ -54,26 +54,35 @@ class _NoteListPageState extends State<NoteListPage> {
           ),
           divider,
           Flexible(
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: controller.noteList.length,
-              physics: const BouncingScrollPhysics(
-                  decelerationRate: ScrollDecelerationRate.fast),
-              itemBuilder: (_, i) {
-                return Dismissible(
-                  direction: DismissDirection.startToEnd,
-                  onDismissed: (_) {
-                    setState(() => controller.onNoteCardDismissed(noteList[i]));
-                  },
-                  key: UniqueKey(),
-                  child: NoteListItem(
-                    title: noteList[i].title,
-                    content: noteList[i].content,
-                  ),
-                );
-              },
-            ),
-          ),
+              child: FutureBuilder(
+                  future: controller.getNotesFromBox(),
+                  builder: (_, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.done) {
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: noteList.length,
+                        physics: const BouncingScrollPhysics(
+                            decelerationRate: ScrollDecelerationRate.fast),
+                        itemBuilder: (_, i) {
+                          final key = UniqueKey();
+                          return Dismissible(
+                            direction: DismissDirection.startToEnd,
+                            onDismissed: (_) {
+                              controller.onNoteCardDismissed(noteList[i]);
+                            },
+                            key: key,
+                            child: NoteListItem(
+                              title: noteList[i].title,
+                              content: noteList[i].content,
+                              key: key,
+                            ),
+                          );
+                        },
+                      );
+                    } else {
+                      return const CircularProgressIndicator();
+                    }
+                  })),
           divider,
           if (noteList.isNotEmpty)
             DefaultButton(
