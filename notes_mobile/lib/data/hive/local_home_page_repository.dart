@@ -6,6 +6,6 @@ class LocalHomePageRepository extends HiveRepository<String> {
   String? get boxName => 'home_page';
   final String key = 'key';
   String getHome() {
-    return box!.get(key) ?? MainPaths.noteList;
+    return box.get(key) ?? MainPaths.noteList;
   }
 }
