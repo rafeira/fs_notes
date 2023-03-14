@@ -15,8 +15,18 @@ class NoteListPageController {
     }
   }
 
-  Future<void> onAddButtonPressed(NavigatorState navigatorState,
-      void Function(void Function()) setState) async {
+  Future<void> getNotesFromBox() async {
+    try {
+      await _openNotesBox();
+      final notes = await _localNotesRepository.getAllNotes();
+
+      noteList.clear();
+      noteList.addAll(notes);
+    } on HiveError {
+      rethrow;
+    }
+  }
+
     final note = await _navigateToNewNotePage(navigatorState);
     if (note != null) {
       setState(() => noteList.add(note));
