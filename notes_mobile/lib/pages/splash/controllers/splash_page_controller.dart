@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:notes_mobile/data/hive/local_home_page_repository.dart';
+import 'package:notes_mobile/data/models/note.dart';
 
 class SplashPageController {
   late AnimationController _positionAnimationController;
@@ -74,9 +75,14 @@ class SplashPageController {
 
   Future<String> _homePage() async {
     await Hive.initFlutter();
+    _registerHiveAdapters();
     await _localHomePageRepository.openBox();
     final home = _localHomePageRepository.getHome();
     await _localHomePageRepository.closeBox();
     return home;
+  }
+
+  void _registerHiveAdapters() {
+    Hive.registerAdapter(NoteAdapter());
   }
 }
