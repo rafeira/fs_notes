@@ -6,7 +6,7 @@ import 'package:notes_mobile/routes/main/main_paths.dart';
 
 class NoteListPageController {
   final noteList = <Note>[];
-
+  final _localNotesRepository = LocalNotesRepository();
   Future<void> onPlusButtonPressed(NavigatorState navigatorState,
       void Function(void Function()) setState) async {
     final note = await _navigateToNewNotePage(navigatorState);
