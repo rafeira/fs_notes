@@ -20,4 +20,8 @@ class LocalNotesRepository extends HiveRepository<Note> {
       rethrow;
     }
   }
+
+  Future<void> remove(Note note) async {
+    await box.delete(note);
+  }
 }
