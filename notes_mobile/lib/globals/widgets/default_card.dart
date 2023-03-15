@@ -5,13 +5,16 @@ class DefaultCard extends StatelessWidget {
       {super.key,
       this.padding = const EdgeInsets.all(8.0),
       this.child,
-      this.cardColor});
+      this.cardColor,
+      this.elevation});
   final EdgeInsetsGeometry padding;
   final Widget? child;
   final Color? cardColor;
+  final double? elevation;
   @override
   Widget build(BuildContext context) {
     return Card(
+        elevation: elevation,
         color: cardColor,
         child: Padding(
           padding: padding,

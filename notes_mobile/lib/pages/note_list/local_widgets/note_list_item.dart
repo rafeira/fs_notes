@@ -8,6 +8,7 @@ class NoteListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultCard(
+        elevation: 10.0,
         cardColor: const Color.fromARGB(255, 21, 114, 109),
         child: ListTile(
           title: Text(
