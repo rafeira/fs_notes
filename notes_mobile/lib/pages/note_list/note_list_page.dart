@@ -86,6 +86,10 @@ class _NoteListPageState extends State<NoteListPage> {
           divider,
           if (noteList.isNotEmpty)
             DefaultButton(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+              radius: 100.0,
+              fontSize: 35.0,
               onTap: () => onPlusButtonPressed(context),
               title: '+',
             )

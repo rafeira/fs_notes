@@ -12,7 +12,9 @@ class DefaultButton extends StatefulWidget {
       this.borderWidth = 2.0,
       this.onTap,
       this.onTapDown,
-      this.onTapUp});
+      this.onTapUp,
+      this.padding,
+      this.fontSize});
   final String title;
   final Color titleColor;
   final Color backgroundColor;
@@ -23,6 +25,8 @@ class DefaultButton extends StatefulWidget {
   final GestureTapCallback? onTap;
   final GestureTapDownCallback? onTapDown;
   final GestureTapUpCallback? onTapUp;
+  final EdgeInsetsGeometry? padding;
+  final double? fontSize;
   @override
   State<DefaultButton> createState() => _DefaultButtonState();
 }
@@ -50,7 +54,7 @@ class _DefaultButtonState extends State<DefaultButton> {
         borderRadius: BorderRadius.circular(widget.radius),
         splashColor: widget.splashColor,
         child: Container(
-            padding:
+            padding: widget.padding ??
                 const EdgeInsets.symmetric(horizontal: 15.0, vertical: 7.5),
             decoration: BoxDecoration(
                 color: Colors.transparent,
@@ -63,6 +67,7 @@ class _DefaultButtonState extends State<DefaultButton> {
               style: titleStyle,
               child: Text(
                 widget.title.toUpperCase(),
+                style: TextStyle(fontSize: widget.fontSize),
               ),
             )),
       ),
