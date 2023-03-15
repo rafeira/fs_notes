@@ -51,7 +51,7 @@ class NoteListPageController {
   Future<void> _navigateToNotLoggedMessage(
       NavigatorState navigatorState) async {
     final model = DefaultMessageArguments(
-        assetImage: '',
+        assetImage: 'assets/icons/user-slash.png',
         message: 'Ola mundo',
         confirmButtonCallback: () => debugPrint('ok'));
     await DefaultMessageNavigatorHelper.navigate(
