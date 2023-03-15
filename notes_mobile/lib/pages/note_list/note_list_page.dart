@@ -75,9 +75,8 @@ class _NoteListPageState extends State<NoteListPage> {
                           final key = UniqueKey();
                           return Dismissible(
                             direction: DismissDirection.startToEnd,
-                            onDismissed: (_) {
-                              controller.onNoteCardDismissed(noteList[i]);
-                            },
+                            onDismissed: (_) async => await controller
+                                .onNoteCardDismissed(noteList[i], setState),
                             key: key,
                             child: NoteListItem(
                               title: noteList[i].title,
