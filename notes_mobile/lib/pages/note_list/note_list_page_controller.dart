@@ -52,8 +52,10 @@ class NoteListPageController {
       NavigatorState navigatorState) async {
     final model = DefaultMessageArguments(
         assetImage: 'assets/icons/user-slash.png',
-        message: 'Ola mundo',
-        confirmButtonCallback: () => debugPrint('ok'));
+        message: 'Você não está logado!',
+        confirmButtonCallback: () =>
+            navigatorState.pushReplacementNamed(MainPaths.login),
+        declineButtonCallback: () => navigatorState.pop());
     await DefaultMessageNavigatorHelper.navigate(
         navigatorState: navigatorState, model: model);
   }
