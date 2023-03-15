@@ -82,7 +82,6 @@ class _NoteListPageState extends State<NoteListPage> {
                             child: NoteListItem(
                               title: noteList[i].title,
                               content: noteList[i].content,
-                              key: key,
                             ),
                           );
                         },
