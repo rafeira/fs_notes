@@ -77,7 +77,8 @@ class NoteListPageController {
     return null;
   }
 
-  void onNoteCardDismissed(Note note) {
-    noteList.remove(note);
+  Future<void> onNoteCardDismissed(Note note, StateSetter setState) async {
+    await _localNotesRepository.remove(note);
+    setState(() => {noteList.remove(note)});
   }
 }
