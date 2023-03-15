@@ -19,6 +19,14 @@ class _NoteListPageState extends State<NoteListPage> {
     height: 10,
   );
 
+  late Future<void> loadNotes;
+
+  @override
+  void initState() {
+    loadNotes = controller.getNotesFromBox().then((_) => setState(() {}));
+    super.initState();
+  }
+
   final controller = NoteListPageController();
 
   List<Note> get noteList => controller.noteList;
@@ -55,7 +63,7 @@ class _NoteListPageState extends State<NoteListPage> {
           divider,
           Flexible(
               child: FutureBuilder(
-                  future: controller.getNotesFromBox(),
+                  future: loadNotes,
                   builder: (_, snapshot) {
                     if (snapshot.connectionState == ConnectionState.done) {
                       return ListView.builder(
