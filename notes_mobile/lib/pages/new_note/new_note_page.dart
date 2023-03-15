@@ -33,11 +33,13 @@ class NewNotePage extends StatelessWidget {
               NoteFormField(
                   controller: titleEditingController,
                   label: 'Título',
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: controller.titleValidator),
               _divider,
               NoteFormField(
                 controller: contentEditingController,
                 maxLines: 5,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: controller.contentValidator,
                 label: 'Conteúdo',
               ),

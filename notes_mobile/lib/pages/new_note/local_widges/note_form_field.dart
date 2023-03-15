@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class NoteFormField extends StatelessWidget {
   const NoteFormField(
-      {super.key, this.maxLines, this.label, this.controller, this.validator});
+      {super.key, this.maxLines, this.label, this.controller, this.validator, this.autovalidateMode});
   final int? maxLines;
   final String? label;
   final TextEditingController? controller;
   final FormFieldValidator<String>? validator;
-
+  final AutovalidateMode? autovalidateMode;
   OutlineInputBorder _border(Color color) =>
       OutlineInputBorder(borderSide: BorderSide(width: .8, color: color));
 
@@ -17,6 +17,7 @@ class NoteFormField extends StatelessWidget {
       controller: controller,
       maxLines: maxLines,
       validator: validator,
+      autovalidateMode: autovalidateMode,
       cursorColor: const Color.fromARGB(255, 70, 70, 70),
       decoration: InputDecoration(
         fillColor: Colors.red,
