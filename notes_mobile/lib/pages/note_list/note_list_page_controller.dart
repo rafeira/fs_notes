@@ -44,6 +44,8 @@ class NoteListPageController {
       NavigatorState navigatorState, StateSetter setState) async {
     final note = await _navigateToNewNotePage(navigatorState);
     if (note != null) {
+      await _openNotesBox();
+      await _localNotesRepository.add(note);
       setState(() => noteList.add(note));
     }
   }
