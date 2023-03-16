@@ -8,11 +8,17 @@ class NewNotePageController {
   Note? note;
   String? titleValidator(String? value) {
     if (value == null || value.isEmpty) return 'Insira um título válido!';
+    if (value.length > 40) {
+      return 'Quantidade de caracteres deve ser menor do que 40!';
+    }
     return null;
   }
 
   String? contentValidator(String? value) {
     if (value == null || value.isEmpty) return 'Insira um conteúdo válido!';
+    if (value.length > 200) {
+      return 'Quantidade de caracteres deve ser menor do que 100!';
+    }
     return null;
   }
 
