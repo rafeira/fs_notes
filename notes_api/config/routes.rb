@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :notes, only: %i(index)
+      # scope :sessions do
+      #   devise_for :users, controllers: { sessions: 'users_sessions' }
+      # end
     end
   end
 end
