@@ -8,7 +8,7 @@ module Api
             token = JWT.encode({user_id: user.id}, Rails.application.secret_key_base)
             render json: { user: user, token: token }
           else
-            render json: { error: 'Invalid email or password' }, status: :unprocessable_entity
+            render json: { error: 'Invalid email or password' }, status: :unauthorized
           end
         end
 
