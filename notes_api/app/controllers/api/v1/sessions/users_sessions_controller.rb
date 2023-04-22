@@ -14,8 +14,8 @@ module Api
 
 
         private
-        def user_params
-          params.require(:user).permit(:email, :password)
+        def set_authorization_header(token)
+          response.headers['Authorization'] = 'Bearer ' + token
         end
       end
     end
