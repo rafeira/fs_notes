@@ -8,8 +8,14 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :notes, only: %i(index)
       scope :sessions do
-        devise_for :users, controllers: { sessions: 'api/v1/sessions/users_sessions' }
       end
     end
   end
+
+  devise_for :users, 
+    module: 'api/v1/users', 
+    path: 'api/v1/users', 
+    controllers: { 
+      sessions: 'api/v1/users/sessions'
+    } 
 end
