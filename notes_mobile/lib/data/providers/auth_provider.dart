@@ -1,4 +1,3 @@
-import 'package:http/http.dart';
 import 'package:notes_mobile/data/providers/api_provider.dart';
 import 'package:http/http.dart' as http;
 
