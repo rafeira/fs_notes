@@ -13,4 +13,8 @@ class ResponseToken {
     if (value == null) throw 'Value can not be null';
     return value;
   }
+
+  static ResponseToken fromHeader(String header) {
+    return ResponseToken(value: header.substring(7));
+  }
 }
