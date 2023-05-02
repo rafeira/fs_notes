@@ -14,6 +14,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_22_182807) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "jwt_denylist", force: :cascade do |t|
+    t.string "jti", null: false
+    t.datetime "exp", null: false
+    t.index ["jti"], name: "index_jwt_denylist_on_jti"
+  end
+
   create_table "notes", force: :cascade do |t|
     t.string "title"
     t.text "content"
