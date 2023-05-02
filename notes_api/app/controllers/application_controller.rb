@@ -2,6 +2,7 @@ class ApplicationController < ActionController::API
   before_action :ensure_json_request
   include ActionController::MimeResponds
   respond_to :json
+  before_action :authenticate_user!
 
 
   def ensure_json_request
