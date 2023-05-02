@@ -5,7 +5,7 @@ import 'package:notes_mobile/data/models/response_token.dart';
 
 class LocalAuth {
   static const key = "session";
-  final FlutterSecureStorage _storage = const FlutterSecureStorage();
+  final _storage = const FlutterSecureStorage();
 
   Future<void> setToken(ResponseToken token) async {
     await _storage.write(key: key, value: jsonEncode(token.toJson()));
