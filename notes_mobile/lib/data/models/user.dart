@@ -9,4 +9,8 @@ class User extends HiveObject {
   String email;
 
   User({required this.id, required this.email});
+  static User? fromJson(Map<String, dynamic>? json) {
+    if (json == null) return null;
+    return User(id: json['id'], email: json['email']);
+  }
 }
