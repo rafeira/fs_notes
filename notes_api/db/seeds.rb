@@ -11,3 +11,5 @@
     content: Faker::Lorem.paragraph(sentence_count: 90)
   )
 end
+
+User.create(email: 'rafael@email.com', password: '123456')
