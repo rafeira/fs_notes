@@ -7,7 +7,7 @@ module Api
         private
     
         def respond_with(_resource, _opts = {})
-          render json: { message: 'Login efetuado com sucesso!' }, status: :ok
+          render json: { message: 'Login efetuado com sucesso!', user: _resource }, status: :ok
         end
     
         def respond_to_on_destroy
