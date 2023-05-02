@@ -12,4 +12,12 @@ class AuthRepository {
   Iterable _decodedIterableBody(String body) {
     return json.decode(body);
   }
+
+  ResponseToken getTokenFromHeader(Map<String, String> headers) {
+    final authorizationHeader = headers['Authorization'];
+    if (authorizationHeader != null) {
+      return ResponseToken.fromHeader(authorizationHeader);
+    }
+    throw 'Absence of authorization header';
+  }
 }
