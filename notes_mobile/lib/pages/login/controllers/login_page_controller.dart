@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes_mobile/data/hive/credentials_repository.dart';
+import 'package:notes_mobile/data/repositories/auth_repository.dart';
 import 'package:notes_mobile/routes/main/main_paths.dart';
 import 'package:notes_mobile/utils/validation_helper.dart';
 
@@ -13,6 +14,8 @@ class LoginPageController {
   String get password => passwordTextEditingController.text;
 
   final _credentialsRepository = CredentialsRepository();
+
+  final _authRepository = AuthRepository();
 
   var isRememberActive = true;
 
@@ -91,7 +94,12 @@ class LoginPageController {
   }
 
   Future<bool> _auth() async {
-    await Future.delayed(const Duration(seconds: 2));
+    try {
+      await _authRepository.signIn(email: email, password: password);
+    } catch (e, st) {
+      print(e);
+      print(st);
+    }
     return true;
   }
 
