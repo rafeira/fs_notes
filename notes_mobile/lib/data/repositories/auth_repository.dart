@@ -7,7 +7,7 @@ import 'package:notes_mobile/data/secure/repositories/local_auth_repository.dart
 class AuthRepository {
   final _provider = AuthProvider();
   final _locaAuthRepository = LocalAuthRepository();
-  Future<void> signIn({required String email, required String password}) async {
+  Future<bool> signIn({required String email, required String password}) async {
     final response = await _provider.signIn(email: email, password: password);
     final userMap = _decodedIterableBody(response.body);
     await _locaAuthRepository.setToken(getTokenFromHeader(response.headers));
