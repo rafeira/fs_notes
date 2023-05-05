@@ -9,8 +9,14 @@ class AuthRepository {
   final _locaAuthRepository = LocalAuthRepository();
   Future<bool> signIn({required String email, required String password}) async {
     final response = await _provider.signIn(email: email, password: password);
-    final userMap = _decodedIterableBody(response.body);
-    await _locaAuthRepository.setToken(getTokenFromHeader(response.headers));
+    if (response.statusCode == 200) {
+      final userMap = _decodedBody(response.body);
+      await _locaAuthRepository.setToken(getTokenFromHeader(response.headers));
+      return true;
+    } else {
+      print(response.statusCode);
+    }
+    return false;
   }
 
   Map<String, dynamic> _decodedBody(String body) {
