@@ -18,7 +18,7 @@ class AuthRepository {
   }
 
   ResponseToken getTokenFromHeader(Map<String, String> headers) {
-    final authorizationHeader = headers['Authorization'];
+    final authorizationHeader = headers['authorization'];
     if (authorizationHeader != null) {
       return ResponseToken.fromHeader(authorizationHeader);
     }
