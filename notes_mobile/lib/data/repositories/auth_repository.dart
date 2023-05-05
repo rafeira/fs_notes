@@ -13,7 +13,7 @@ class AuthRepository {
     await _locaAuthRepository.setToken(getTokenFromHeader(response.headers));
   }
 
-  Iterable _decodedIterableBody(String body) {
+  Map<String, dynamic> _decodedBody(String body) {
     return json.decode(body);
   }
 
