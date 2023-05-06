@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:notes_mobile/data/models/response_token.dart';
+import 'package:notes_mobile/data/models/auth/response_token.dart';
 
 class LocalAuth {
   static const key = "session";

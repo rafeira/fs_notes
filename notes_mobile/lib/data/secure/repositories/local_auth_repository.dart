@@ -1,4 +1,4 @@
-import 'package:notes_mobile/data/models/response_token.dart';
+import 'package:notes_mobile/data/models/auth/response_token.dart';
 import 'package:notes_mobile/data/secure/providers/local_auth.dart';
 
 class LocalAuthRepository {

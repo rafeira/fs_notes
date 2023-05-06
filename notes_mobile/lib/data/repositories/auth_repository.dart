@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:notes_mobile/data/models/response_token.dart';
+import 'package:notes_mobile/data/models/auth/response_token.dart';
 import 'package:notes_mobile/data/providers/auth_provider.dart';
 import 'package:notes_mobile/data/secure/repositories/local_auth_repository.dart';
 
