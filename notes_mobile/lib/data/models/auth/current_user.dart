@@ -3,7 +3,7 @@ import 'package:notes_mobile/data/models/user.dart';
 
 class CurrentUser {
   User user;
-  final ResponseToken? token;
+  ResponseToken? token;
 
   CurrentUser({required this.user, this.token});
   bool isLogged() => token != null;
