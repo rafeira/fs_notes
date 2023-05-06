@@ -28,4 +28,11 @@ class User extends HiveObject {
         firstName: json['first_name'],
         lastName: json['last_name']);
   }
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'email': email,
+        'first_name': firstName,
+        'last_name': lastName
+      };
 }
