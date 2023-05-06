@@ -1,11 +1,10 @@
 class ResponseToken {
   String value;
   ResponseToken({required this.value});
-  Map<String, dynamic> toJson() {
-    return {'value': value};
-  }
+  Map<String, dynamic> toJson() => {'value': value};
 
-  factory ResponseToken.fromJson(Map<String, dynamic> json) {
+  static ResponseToken? fromJson(Map<String, dynamic>? json) {
+    if (json == null) return null;
     return ResponseToken(value: _valueFromJson(json['value']));
   }
 
