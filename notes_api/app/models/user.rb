@@ -4,4 +4,5 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :jwt_authenticatable,
          :recoverable, :rememberable, :validatable, jwt_revocation_strategy: JwtDenylist, 
          authentication_keys: [:email]
+  validates :first_name, :last_name, presence: true
 end

@@ -12,4 +12,9 @@
   )
 end
 
-User.create(email: 'rafael@email.com', password: '123456')
+User.create(
+  email: 'rafael@email.com',
+  first_name: 'Rafael',
+  last_name: 'Vieira',
+  password: '123456'
+)
