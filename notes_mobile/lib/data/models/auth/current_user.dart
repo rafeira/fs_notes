@@ -16,7 +16,7 @@ class CurrentUser {
     return CurrentUser(user: userJson, token: json['token']);
   }
 
-  Map<String, dynamic> toJson(CurrentUser currentUser) {
+  Map<String, dynamic> toJson() {
     return {'user': user.toJson(), 'token': token?.toJson()};
   }
 }
