@@ -13,7 +13,7 @@ class ResponseToken {
     return value;
   }
 
-  static ResponseToken fromHeader(String header) {
+  static ResponseToken fromHeaderValue(String header) {
     return ResponseToken(value: header.substring(7));
   }
 }
