@@ -37,6 +37,7 @@ class DefaultMessagePage extends StatelessWidget {
                 ),
               Text(
                 arguments.message,
+                textAlign: arguments.textMessageAlignment,
                 style: const TextStyle(fontSize: 25.0, color: Colors.white),
               ),
               Row(
