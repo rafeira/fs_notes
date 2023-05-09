@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:notes_mobile/data/hive/credentials_repository.dart';
 import 'package:notes_mobile/data/repositories/auth_repository.dart';
+import 'package:notes_mobile/globals/pages/default_message/navigation_hepers/arguments/default_message_arguments.dart';
 import 'package:notes_mobile/routes/main/main_paths.dart';
 import 'package:notes_mobile/utils/validation_helper.dart';
 
@@ -26,10 +29,17 @@ class LoginPageController {
 
   LoginPageController({required this.context});
   Future<void> onLoginButtonPressed(
-      void Function(void Function() fn) setState) async {
+      StateSetter setState, NavigatorState navigatorState) async {
     if (loginFormKey.currentState!.validate()) {
       setState(loadPage);
-      if (await _auth()) {
+      final isSignedUp = await _auth();
+      if (isSignedUp == null) {
+        final arguments = DefaultMessageArguments(
+            message: 'Você está com problemas de conexão!',
+            assetImage: 'assets/icons/server-error.png');
+        await navigatorState.pushNamed(MainPaths.defaultMessage,
+            arguments: arguments);
+      } else if (isSignedUp) {
         await _saveCredentials();
         await _navigate(MainPaths.noteList);
       }
@@ -93,14 +103,12 @@ class LoginPageController {
     return null;
   }
 
-  Future<bool> _auth() async {
+  Future<bool?> _auth() async {
     try {
-      await _authRepository.signIn(email: email, password: password);
-    } catch (e, st) {
-      print(e);
-      print(st);
+      return await _authRepository.signIn(email: email, password: password);
+    } on SocketException {
+      return null;
     }
-    return true;
   }
 
   Future<void> _navigate(String route) async {

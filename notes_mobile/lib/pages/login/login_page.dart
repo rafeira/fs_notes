@@ -52,8 +52,8 @@ class _LoginPageState extends State<LoginPage> {
             enabled: !isLoading,
             textInputType: TextInputType.emailAddress,
             validator: controller.emailValidator,
-            onFieldSubmitted: (_) async =>
-                await controller.onLoginButtonPressed(setState),
+            onFieldSubmitted: (_) async => await controller
+                .onLoginButtonPressed(setState, Navigator.of(context)),
             controller: controller.emailTextEditingController,
           ),
           divider,
@@ -72,8 +72,8 @@ class _LoginPageState extends State<LoginPage> {
             enabled: !isLoading,
             textInputType: TextInputType.visiblePassword,
             validator: controller.passwordValidator,
-            onFieldSubmitted: (_) async =>
-                await controller.onLoginButtonPressed(setState),
+            onFieldSubmitted: (_) async => await controller
+                .onLoginButtonPressed(setState, Navigator.of(context)),
             controller: controller.passwordTextEditingController,
           ),
           divider,
@@ -86,7 +86,8 @@ class _LoginPageState extends State<LoginPage> {
               alignment: Alignment.center,
               child: DefaultButton(
                 onTap: !isLoading
-                    ? () => controller.onLoginButtonPressed(setState)
+                    ? () => controller.onLoginButtonPressed(
+                        setState, Navigator.of(context))
                     : null,
                 title: 'Login',
               ))
