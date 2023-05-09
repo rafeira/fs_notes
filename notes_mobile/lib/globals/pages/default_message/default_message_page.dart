@@ -49,10 +49,11 @@ class DefaultMessagePage extends StatelessWidget {
                     backgroundColor: Colors.blue,
                     borderColor: const Color.fromARGB(255, 86, 172, 241),
                   ),
-                  DefaultButton(
-                    title: 'Fazer login',
-                    onTap: arguments.confirmButtonCallback,
-                  )
+                  if (arguments.confirmButtonCallback != null)
+                    DefaultButton(
+                      title: arguments.confirmButtonText ?? 'Fazer login',
+                      onTap: arguments.confirmButtonCallback,
+                    )
                 ],
               )
             ],
