@@ -9,9 +9,10 @@ class AuthRepository {
   Future<bool> signIn({required String email, required String password}) async {
     final response = await _provider.signIn(email: email, password: password);
     if (response.statusCode == 200) {
+      final decodedResponseBody = _decodedBody(response.body);
       await _locaAuthRepository.setCurrentUser(
           authorizationHeader: response.headers['authorization'],
-          userMap: _decodedBody(response.body));
+          userMap: decodedResponseBody['user']);
       return true;
     }
     return false;
