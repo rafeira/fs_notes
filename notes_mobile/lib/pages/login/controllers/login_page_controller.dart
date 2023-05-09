@@ -36,17 +36,24 @@ class LoginPageController {
       setState(loadPage);
       final isSignedUp = await _auth();
       if (isSignedUp == null) {
-        final arguments = DefaultMessageArguments(
-            message: 'Você está com problemas de conexão!',
-            assetImage: 'assets/icons/server-error.png');
         await navigatorState.pushNamed(MainPaths.defaultMessage,
-            arguments: arguments);
+            arguments: _authErrorNavigationArguments(navigatorState));
       } else if (isSignedUp) {
         await _saveCredentials();
         await _navigate(MainPaths.noteList);
       }
       setState(stopLoadPage);
     }
+  }
+
+  DefaultMessageArguments _authErrorNavigationArguments(
+      NavigatorState navigatorState) {
+    return DefaultMessageArguments(
+        message:
+            'Você está com problemas de conexão! Tente novamente mais tarde!',
+        textMessageAlignment: TextAlign.center,
+        declineButtonCallback: navigatorState.pop,
+        assetImage: 'assets/icons/server-error.png');
   }
 
   setCredentials() async {
