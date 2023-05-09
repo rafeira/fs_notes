@@ -24,6 +24,8 @@ class LoginPageController {
 
   var isPasswordVisible = false;
 
+  var hasServerError = false;
+
   final BuildContext context;
   bool isLoading = false;
 
