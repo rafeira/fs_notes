@@ -55,6 +55,7 @@ class NoteListPageController {
     final model = DefaultMessageArguments(
         assetImage: 'assets/icons/user-slash.png',
         message: 'Você não está logado!',
+        iconColor: Colors.white,
         confirmButtonCallback: () =>
             navigatorState.pushReplacementNamed(MainPaths.login),
         declineButtonCallback: () => navigatorState.pop());

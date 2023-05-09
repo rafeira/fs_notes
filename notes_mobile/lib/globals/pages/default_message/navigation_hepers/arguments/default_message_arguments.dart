@@ -5,9 +5,11 @@ class DefaultMessageArguments {
   String? assetImage;
   VoidCallback? confirmButtonCallback;
   VoidCallback? declineButtonCallback;
+  Color? iconColor;
   DefaultMessageArguments(
       {required this.message,
       this.assetImage,
       this.confirmButtonCallback,
-      this.declineButtonCallback});
+      this.declineButtonCallback,
+      this.iconColor});
 }
