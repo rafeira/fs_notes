@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:notes_mobile/data/hive/notes/local_notes_repository.dart';
 import 'package:notes_mobile/data/models/note.dart';

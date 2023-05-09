@@ -33,7 +33,7 @@ class DefaultMessagePage extends StatelessWidget {
                   image: AssetImage(arguments.assetImage!),
                   width: 120.0,
                   height: 120.0,
-                  color: Colors.white,
+                  color: arguments.iconColor,
                 ),
               Text(
                 arguments.message,
