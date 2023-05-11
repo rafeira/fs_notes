@@ -53,12 +53,13 @@ class NoteListPageController {
   Future<void> _navigateToNotLoggedMessage(
       NavigatorState navigatorState) async {
     final model = DefaultMessageArguments(
-        assetImage: 'assets/icons/user-slash.png',
-        message: 'Você não está logado!',
-        iconColor: Colors.white,
-        confirmButtonCallback: () =>
-            navigatorState.pushReplacementNamed(MainPaths.login),
-        declineButtonCallback: () => navigatorState.pop());
+      assetImage: 'assets/icons/user-slash.png',
+      message: 'Você não está logado!',
+      iconColor: Colors.white,
+      confirmButtonCallback: () =>
+          navigatorState.popAndPushNamed(MainPaths.login),
+      declineButtonCallback: navigatorState.pop,
+    );
     await DefaultMessageNavigatorHelper.navigate(
         navigatorState: navigatorState, model: model);
   }
