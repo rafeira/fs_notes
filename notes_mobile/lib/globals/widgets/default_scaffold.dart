@@ -6,11 +6,13 @@ class DefaultScaffold extends StatelessWidget {
       required this.body,
       this.bodyPadding,
       this.backgroundColor = const Color.fromARGB(255, 55, 55, 55),
+      this.drawer,
       this.appBar});
   final Widget body;
   final EdgeInsetsGeometry? bodyPadding;
   final Color backgroundColor;
   final PreferredSizeWidget? appBar;
+  final Widget? drawer;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,6 +22,7 @@ class DefaultScaffold extends StatelessWidget {
         padding: bodyPadding ?? const EdgeInsets.all(8.0),
         child: body,
       )),
+      drawer: drawer,
       backgroundColor: backgroundColor,
     );
   }
