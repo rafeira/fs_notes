@@ -121,6 +121,6 @@ class LoginPageController {
   }
 
   Future<void> _navigate(String route) async {
-    await Navigator.of(context).pushReplacementNamed(route);
+    await Navigator.of(context).pushNamedAndRemoveUntil(route, (_) => false);
   }
 }
