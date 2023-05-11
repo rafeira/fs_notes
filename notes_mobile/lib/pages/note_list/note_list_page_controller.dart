@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:notes_mobile/data/hive/notes/local_notes_repository.dart';
 import 'package:notes_mobile/data/models/note.dart';
+import 'package:notes_mobile/data/repositories/auth_repository.dart';
 import 'package:notes_mobile/globals/pages/default_message/navigation_hepers/arguments/default_message_arguments.dart';
 import 'package:notes_mobile/globals/pages/default_message/navigation_hepers/default_message_navigator_helper.dart';
 import 'package:notes_mobile/routes/main/main_paths.dart';
@@ -11,6 +12,9 @@ import 'package:notes_mobile/routes/main/main_paths.dart';
 class NoteListPageController {
   final noteList = <Note>[];
   final _localNotesRepository = LocalNotesRepository();
+  final _authRepository = AuthRepository();
+
+  var isSignedIn = false;
   Future<void> onPlusButtonPressed(
       NavigatorState navigatorState, StateSetter setState) async {
     final note = await _navigateToNewNotePage(navigatorState);
@@ -84,5 +88,12 @@ class NoteListPageController {
   Future<void> onNoteCardDismissed(Note note, StateSetter setState) async {
     await _localNotesRepository.remove(note);
     setState(() => {noteList.remove(note)});
+  }
+
+  Future<void> checkUserSignIn(StateSetter setState) async {
+    final isSignedIn = await _authRepository.isSignedIn();
+    setState(() {
+      this.isSignedIn = isSignedIn;
+    });
   }
 }

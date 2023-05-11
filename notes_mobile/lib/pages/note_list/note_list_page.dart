@@ -24,6 +24,7 @@ class _NoteListPageState extends State<NoteListPage> {
   @override
   void initState() {
     loadNotes = controller.getNotesFromBox().then((_) => setState(() {}));
+    controller.checkUserSignIn(setState);
     super.initState();
   }
 
