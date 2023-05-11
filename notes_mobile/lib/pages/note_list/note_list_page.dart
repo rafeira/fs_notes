@@ -51,14 +51,15 @@ class _NoteListPageState extends State<NoteListPage> {
                 onTap: () => onAddButtonPressed(context),
                 title: 'Adicionar',
               ),
-              DefaultButton(
-                onTap: () => onSyncButtonPressed(context),
-                borderColor: const Color.fromARGB(255, 26, 117, 4),
-                titleColor: const Color.fromARGB(255, 49, 107, 67),
-                backgroundColor: Colors.grey,
-                splashColor: const Color.fromARGB(255, 2, 59, 10),
-                title: 'Sincronizar',
-              ),
+              if (!controller.isSignedIn)
+                DefaultButton(
+                  onTap: () => onSyncButtonPressed(context),
+                  borderColor: const Color.fromARGB(255, 26, 117, 4),
+                  titleColor: const Color.fromARGB(255, 49, 107, 67),
+                  backgroundColor: Colors.grey,
+                  splashColor: const Color.fromARGB(255, 2, 59, 10),
+                  title: 'Sincronizar',
+                ),
             ],
           ),
           divider,
