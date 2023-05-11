@@ -18,7 +18,5 @@ class LocalAuthRepository {
 
   Future<void> clearCurrentUser() async => await _localAuth.clearCurrentUser();
 
-  Future<void> clearToken() async => await _localAuth.clearToken();
-
-  Future<CurrentUser?> get session async => await _localAuth.getCurrentUser();
+  Future<CurrentUser?> get currentUser async => await _localAuth.getCurrentUser();
 }
