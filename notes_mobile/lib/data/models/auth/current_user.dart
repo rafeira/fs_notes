@@ -13,7 +13,9 @@ class CurrentUser {
     final userJson = json['user'];
     if (userJson == null) throw 'User must not be null';
 
-    return CurrentUser(user: userJson, token: json['token']);
+    return CurrentUser(
+        user: User.fromJson(userJson)!,
+        token: ResponseToken.fromJson(json['token']));
   }
 
   Map<String, dynamic> toJson() {
