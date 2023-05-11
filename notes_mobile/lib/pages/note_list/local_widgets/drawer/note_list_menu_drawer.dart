@@ -7,8 +7,14 @@ class NoteListMenuDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const DefaultDrawer(list: [
-      DefaultDrawerItem()
-    ],);
+    return DefaultDrawer(
+      list: [
+        DefaultDrawerItem(
+          title: 'Sair',
+          titleColor: Colors.red,
+          onTap: () => false,
+        )
+      ],
+    );
   }
 }
