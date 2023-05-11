@@ -18,6 +18,10 @@ class AuthRepository {
     return false;
   }
 
+  Future<bool> isSignedIn() async {
+    return (await _locaAuthRepository.currentUser) != null;
+  }
+
   Map<String, dynamic> _decodedBody(String body) {
     return json.decode(body);
   }
