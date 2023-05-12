@@ -37,7 +37,7 @@ class _NoteListPageState extends State<NoteListPage> {
   Widget build(BuildContext context) {
     return DefaultScaffold(
       appBar: const DefaultAppBar(),
-      drawer: const NoteListMenuDrawer(),
+      drawer: NoteListMenuDrawer(),
       backgroundColor: const Color.fromARGB(255, 160, 160, 160),
       body: Column(
         children: [
