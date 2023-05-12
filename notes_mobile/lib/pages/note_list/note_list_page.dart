@@ -4,9 +4,9 @@ import 'package:notes_mobile/globals/widgets/default_app_bar.dart';
 import 'package:notes_mobile/globals/widgets/default_scaffold.dart';
 import 'package:notes_mobile/globals/widgets/default_title.dart';
 import 'package:notes_mobile/pages/login/local_widgets/default_button.dart';
+import 'package:notes_mobile/pages/note_list/controllers/note_list_page_controller.dart';
 import 'package:notes_mobile/pages/note_list/local_widgets/drawer/note_list_menu_drawer.dart';
 import 'package:notes_mobile/pages/note_list/local_widgets/note_list_item.dart';
-import 'package:notes_mobile/pages/note_list/note_list_page_controller.dart';
 
 class NoteListPage extends StatefulWidget {
   const NoteListPage({super.key});
