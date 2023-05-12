@@ -1,5 +1,8 @@
+import 'package:notes_mobile/data/repositories/auth_repository.dart';
+
 class NoteListMenuDrawerController {
+  final _authRepository = AuthRepository();
   Future<void> logout() async {
-    // TODO
+    await _authRepository.logout();
   }
 }
