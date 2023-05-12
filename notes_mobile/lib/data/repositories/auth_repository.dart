@@ -6,12 +6,12 @@ import 'package:notes_mobile/utils/logger_config.dart';
 
 class AuthRepository {
   final _provider = AuthProvider();
-  final _locaAuthRepository = LocalAuthRepository();
+  final _localAuthRepository = LocalAuthRepository();
   Future<bool> signIn({required String email, required String password}) async {
     final response = await _provider.signIn(email: email, password: password);
     if (response.statusCode == 200) {
       final decodedResponseBody = _decodedBody(response.body);
-      await _locaAuthRepository.setCurrentUser(
+      await _localAuthRepository.setCurrentUser(
           authorizationHeader: response.headers['authorization'],
           userMap: decodedResponseBody['user']);
       return true;
@@ -20,7 +20,7 @@ class AuthRepository {
   }
 
   Future<bool> isSignedIn() async {
-    return (await _locaAuthRepository.currentUser) != null;
+    return (await _localAuthRepository.currentUser) != null;
   }
 
   Map<String, dynamic> _decodedBody(String body) {
