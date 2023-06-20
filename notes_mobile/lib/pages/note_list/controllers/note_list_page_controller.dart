@@ -13,8 +13,9 @@ class NoteListPageController {
   final noteList = <Note>[];
   final _localNotesRepository = LocalNotesRepository();
   final _authRepository = AuthRepository();
+  final _notesService = NotesService();
+  Future<bool> get isLoggedIn async => await _authRepository.isSignedIn();
 
-  var isSignedIn = false;
   Future<void> onPlusButtonPressed(
       NavigatorState navigatorState, StateSetter setState) async {
     final note = await _navigateToNewNotePage(navigatorState);
@@ -68,14 +69,10 @@ class NoteListPageController {
   }
 
   Future<void> onSyncButtonPressed(NavigatorState navigatorState) async {
-    if (await _isLoggedIn()) {
+    if (await isLoggedIn) {
     } else {
       await _navigateToNotLoggedMessage(navigatorState);
     }
-  }
-
-  Future<bool> _isLoggedIn() async {
-    return false;
   }
 
   Future<Note?> _navigateToNewNotePage(NavigatorState navigatorState) async {
