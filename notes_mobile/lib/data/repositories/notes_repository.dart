@@ -11,7 +11,25 @@ class NotesRepository {
     return jsonNotes.map((e) => Note.fromJson(e)).toList();
   }
 
+  Future<Note> submit(Note note) async {
+    final response = await _provider.submit(note.toJson());
+    final jsonNote = _decodedBody(response.body);
+    return Note.fromJson(jsonNote);
+  }
+
+  Future<bool> remove(Note note) async {
+    if (note.id != null) {
+      await _provider.delete(note.id!);
+      return true;
+    }
+    return false;
+  }
+
   Iterable _decodedIterableBody(String body) {
+    return json.decode(body);
+  }
+
+  Map<String, dynamic> _decodedBody(String body) {
     return json.decode(body);
   }
 }

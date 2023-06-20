@@ -48,8 +48,7 @@ class NoteListPageController {
       NavigatorState navigatorState, StateSetter setState) async {
     final note = await _navigateToNewNotePage(navigatorState);
     if (note != null) {
-      await _openNotesBox();
-      await _localNotesRepository.add(note);
+      await _addNote(note);
       setState(() => noteList.add(note));
     }
   }
@@ -86,14 +85,23 @@ class NoteListPageController {
   }
 
   Future<void> onNoteCardDismissed(Note note, StateSetter setState) async {
-    await _localNotesRepository.remove(note);
+    await _removeNote(note);
     setState(() => {noteList.remove(note)});
   }
 
-  Future<void> checkUserSignIn(StateSetter setState) async {
-    final isSignedIn = await _authRepository.isSignedIn();
-    setState(() {
-      this.isSignedIn = isSignedIn;
-    });
+  Future<void> _addNote(Note note) async {
+    if (await isLoggedIn) {
+      await _notesService.addInApi(note);
+      return;
+    }
+    await _notesService.addInBox(note);
+  }
+
+  Future<void> _removeNote(Note note) async {
+    if (await isLoggedIn) {
+      await _notesService.removeFromApi(note);
+      return;
+    }
+    await _notesService.removeFromBox(note);
   }
 }
