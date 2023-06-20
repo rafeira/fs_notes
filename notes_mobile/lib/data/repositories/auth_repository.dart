@@ -34,8 +34,8 @@ class AuthRepository {
       LoggerConfig.logger.e('Token null!');
       return false;
     }
-    final response = await _provider.logout(token);
-    if (response.statusCode == 200) return true;
-    return false;
+    await _provider.logout(token);
+    await _localAuthRepository.clearCurrentUser();
+    return true;
   }
 }
