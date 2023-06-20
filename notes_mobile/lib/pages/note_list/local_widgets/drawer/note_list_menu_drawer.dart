@@ -15,7 +15,7 @@ class NoteListMenuDrawer extends StatelessWidget {
           titleColor: const Color.fromARGB(255, 48, 48, 48),
           buttonColor: const Color.fromARGB(255, 242, 170, 165),
           splashColor: Colors.red,
-          onTap: controller.logout,
+          onTap: () => controller.logout(navigatorState: Navigator.of(context)),
         )
       ],
     );
