@@ -1,8 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
-import 'package:notes_mobile/data/hive/notes/local_notes_repository.dart';
+import 'package:notes_mobile/data/services/notes_service.dart';
 import 'package:notes_mobile/data/models/note.dart';
 import 'package:notes_mobile/data/repositories/auth_repository.dart';
 import 'package:notes_mobile/globals/pages/default_message/navigation_hepers/arguments/default_message_arguments.dart';
@@ -11,7 +10,7 @@ import 'package:notes_mobile/routes/main/main_paths.dart';
 
 class NoteListPageController {
   final noteList = <Note>[];
-  final _localNotesRepository = LocalNotesRepository();
+
   final _authRepository = AuthRepository();
   final _notesService = NotesService();
   Future<bool> get isLoggedIn async => await _authRepository.isSignedIn();
@@ -20,29 +19,31 @@ class NoteListPageController {
       NavigatorState navigatorState, StateSetter setState) async {
     final note = await _navigateToNewNotePage(navigatorState);
     if (note != null) {
-      await _openNotesBox();
-      await _localNotesRepository.add(note);
+      await _notesService.addInBox(note);
       setState(() => noteList.add(note));
     }
   }
 
-  Future<void> getNotesFromBox() async {
-    try {
-      await _openNotesBox();
-      final notes = await _localNotesRepository.getAllNotes();
-
-      noteList.clear();
-      noteList.addAll(notes);
-    } on HiveError {
-      rethrow;
-    }
+  Future<List<Note>> _getNotes() async {
+    return await isLoggedIn
+        ? await _getNotesFromApi()
+        : await _getNotesFromBox();
   }
 
-  Future<void> _openNotesBox() async {
-    final isBoxOpen = _localNotesRepository.isOpen();
-    if (!isBoxOpen) {
-      await _localNotesRepository.openBox();
-    }
+  Future<List<Note>> _getNotesFromApi() async {
+    return await _notesService.getAllFromApi();
+  }
+
+  Future<void> updateNoteList(StateSetter setter) async {
+    final notes = await _getNotes();
+    setter(() {
+      noteList.clear();
+      noteList.addAll(notes);
+    });
+  }
+
+  Future<List<Note>> _getNotesFromBox() async {
+    return await _notesService.getAllFromBox();
   }
 
   Future<void> onAddButtonPressed(
