@@ -64,12 +64,13 @@ class _DefaultMessagePageState extends State<DefaultMessagePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  DefaultButton(
-                    title: 'Voltar',
-                    onTap: arguments.declineButtonCallback,
-                    backgroundColor: Colors.blue,
-                    borderColor: const Color.fromARGB(255, 86, 172, 241),
-                  ),
+                  if (arguments.declineButtonCallback != null)
+                    DefaultButton(
+                      title: 'Voltar',
+                      onTap: arguments.declineButtonCallback,
+                      backgroundColor: Colors.blue,
+                      borderColor: const Color.fromARGB(255, 86, 172, 241),
+                    ),
                   if (arguments.confirmButtonCallback != null)
                     DefaultButton(
                       title: arguments.confirmButtonText ?? 'Fazer login',
