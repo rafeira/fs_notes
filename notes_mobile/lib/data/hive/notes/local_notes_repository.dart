@@ -13,7 +13,7 @@ class LocalNotesRepository extends HiveRepository<Note> {
     }
   }
 
-  Future<List<Note>> getAllNotes() async {
+  Future<List<Note>> getAll() async {
     try {
       return box.values.toList();
     } on HiveError {
