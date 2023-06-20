@@ -4,9 +4,14 @@ import 'package:notes_mobile/globals/widgets/default_app_bar.dart';
 import 'package:notes_mobile/globals/widgets/default_scaffold.dart';
 import 'package:notes_mobile/pages/login/local_widgets/default_button.dart';
 
-class DefaultMessagePage extends StatelessWidget {
+class DefaultMessagePage extends StatefulWidget {
   const DefaultMessagePage({super.key});
 
+  @override
+  State<DefaultMessagePage> createState() => _DefaultMessagePageState();
+}
+
+class _DefaultMessagePageState extends State<DefaultMessagePage> {
   DefaultMessageArguments _getArguments(BuildContext context) {
     final arguments = ModalRoute.of(context)!.settings.arguments;
     if (arguments is DefaultMessageArguments) {
@@ -17,9 +22,25 @@ class DefaultMessagePage extends StatelessWidget {
     }
   }
 
+  late DefaultMessageArguments arguments;
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    arguments = _getArguments(context);
+    _executeCallback();
+    super.didChangeDependencies();
+  }
+
+  void _executeCallback() {
+    arguments.pageCallback?.call();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final arguments = _getArguments(context);
     return DefaultScaffold(
         appBar: const DefaultAppBar(),
         body: Align(
