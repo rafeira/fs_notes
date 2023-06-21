@@ -19,17 +19,16 @@ class _NoteListPageState extends State<NoteListPage> {
   final divider = const SizedBox(
     height: 10,
   );
+  final controller = NoteListPageController();
 
   late Future<void> loadNotes;
 
   @override
   void initState() {
-    loadNotes = controller.updateNoteList(setState);
+    loadNotes = controller.updateNoteList(setState, Navigator.of(context));
 
     super.initState();
   }
-
-  final controller = NoteListPageController();
 
   List<Note> get noteList => controller.noteList;
 

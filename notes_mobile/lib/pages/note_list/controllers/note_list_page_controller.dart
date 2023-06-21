@@ -24,18 +24,27 @@ class NoteListPageController {
     }
   }
 
-  Future<List<Note>> _getNotes() async {
-    return await isLoggedIn
-        ? await _getNotesFromApi()
-        : await _getNotesFromBox();
+  Future<List<Note>> _getNotes(NavigatorState navigatorState) async {
+    final notesFromBox = await _getNotesFromBox();
+    if (await isLoggedIn) {
+      if (notesFromBox.isNotEmpty) {
+        await _showSyncPermissionMessage(navigatorState);
+        return await _getNotesFromApi();
+      } else {
+        return await _getNotesFromApi();
+      }
+    } else {
+      return notesFromBox;
+    }
   }
 
   Future<List<Note>> _getNotesFromApi() async {
     return await _notesService.getAllFromApi();
   }
 
-  Future<void> updateNoteList(StateSetter setter) async {
-    final notes = await _getNotes();
+  Future<void> updateNoteList(
+      StateSetter setter, NavigatorState navigatorState) async {
+    final notes = await _getNotes(navigatorState);
     setter(() {
       noteList.clear();
       noteList.addAll(notes);
@@ -101,5 +110,16 @@ class NoteListPageController {
       return;
     }
     await _notesService.removeFromBox(note);
+  }
+
+  Future<void> _showSyncPermissionMessage(NavigatorState navigatorState) async {
+    final arguments = DefaultMessageArguments(
+        message:
+            'Deseja sincronizar os dados armazenados localmente? Se optar por não sincronizar esses dados são perdidos.',
+        confirmButtonText: 'Sincronizar',
+        confirmButtonCallback: () {},
+        declineButtonCallback: () => navigatorState.pop());
+    await navigatorState.pushNamed(MainPaths.defaultMessage,
+        arguments: arguments);
   }
 }
