@@ -11,10 +11,11 @@ class AuthProvider extends ApiProvider {
       'user': {'email': email, 'password': password}
     });
     return await http.post(uri('/users/sign_in'),
-        headers: defaultHeaders, body: encodedBody);
+        headers: await defaultHeaders, body: encodedBody);
   }
 
   Future<http.Response> logout(ResponseToken token) async {
-    return await http.delete(uri('/users/sign_out'), headers: defaultHeaders);
+    return await http.delete(uri('/users/sign_out'),
+        headers: await defaultHeaders);
   }
 }
