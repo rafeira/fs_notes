@@ -36,8 +36,8 @@ class NotesService {
   Future<void> addInApi(Note note) async {
     try {
       await _notesRepository.submit(note);
-    } on Exception catch (e) {
-      LoggerConfig.logger.e(e);
+    } on Exception catch (_, st) {
+      LoggerConfig.logger.e(st);
     }
   }
 
