@@ -12,7 +12,7 @@ class NotesRepository {
   }
 
   Future<Note> submit(Note note) async {
-    final response = await _provider.submit(note.toJson());
+    final response = await _provider.submit({'note': note.toJson()});
     final jsonNote = _decodedBody(response.body);
     return Note.fromJson(jsonNote);
   }
