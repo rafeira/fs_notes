@@ -6,6 +6,8 @@ import 'package:notes_mobile/routes/main/main_paths.dart';
 
 class NoteListMenuDrawerController {
   final _authRepository = AuthRepository();
+  Future<bool> get userIsLogged async => await _authRepository.isSignedIn();
+
   Future<void> logout({required NavigatorState navigatorState}) async {
     if (await _authRepository.logout()) {
       final arguments = DefaultMessageArguments(

@@ -9,14 +9,23 @@ class NoteListMenuDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultDrawer(
-      list: [
-        DefaultDrawerItem(
-          title: 'Sair',
-          titleColor: const Color.fromARGB(255, 48, 48, 48),
-          buttonColor: const Color.fromARGB(255, 242, 170, 165),
-          splashColor: Colors.red,
-          onTap: () => controller.logout(navigatorState: Navigator.of(context)),
-        )
+      children: [
+        FutureBuilder(
+            future: controller.userIsLogged,
+            builder: (context, snapshot) {
+              if (snapshot.hasData && snapshot.data != null && snapshot.data!) {
+                return DefaultDrawerItem(
+                  title: 'Sair',
+                  titleColor: const Color.fromARGB(255, 48, 48, 48),
+                  buttonColor: const Color.fromARGB(255, 242, 170, 165),
+                  splashColor: Colors.red,
+                  onTap: () =>
+                      controller.logout(navigatorState: Navigator.of(context)),
+                );
+              } else {
+                return const SizedBox();
+              }
+            })
       ],
     );
   }
