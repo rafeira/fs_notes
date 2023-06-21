@@ -15,6 +15,15 @@ module Api
         end
       end
 
+      def destroy
+        @note = Note.find_by(id: params[:id])
+        if @note&.destroy
+          render json: {message: 'Anotação removida com sucesso!'}, status: :no_content
+        else
+          render json: {message: "Anotação com o id #{params[:id]} não encontrado"}, status: :not_found
+        end
+      end
+      private
       def note_params
         params.require(:note).permit(:title, :content)
       end
