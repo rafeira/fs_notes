@@ -3,7 +3,7 @@ module Api
     class NotesController < ApplicationController
       def index
         @notes = Note.order(created_at: :desc)
-        render json: @notes
+        render json: @notes, status: :ok
       end
 
       def create
