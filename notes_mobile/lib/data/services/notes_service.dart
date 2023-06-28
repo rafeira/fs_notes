@@ -46,4 +46,9 @@ class NotesService {
   Future<void> removeFromApi(Note note) async {
     await _notesRepository.remove(note);
   }
+
+  Future<void> syncronizeWithApi() async {
+    final notes = await getAllFromBox();
+    await _notesRepository.syncronizeWithApi(notes);
+  }
 }

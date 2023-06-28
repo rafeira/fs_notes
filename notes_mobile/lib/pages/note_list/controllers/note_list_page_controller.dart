@@ -117,9 +117,14 @@ class NoteListPageController {
         message:
             'Deseja sincronizar os dados armazenados localmente? Se optar por não sincronizar esses dados são perdidos.',
         confirmButtonText: 'Sincronizar',
-        confirmButtonCallback: () {},
+        confirmButtonCallback: () => _syncronizeNotesWithApi(navigatorState),
         declineButtonCallback: () => navigatorState.pop());
     await navigatorState.pushNamed(MainPaths.defaultMessage,
         arguments: arguments);
+  }
+
+  Future<void> _syncronizeNotesWithApi(NavigatorState navigatorState) async {
+    await _notesService.syncronizeWithApi();
+    navigatorState.pop();
   }
 }
