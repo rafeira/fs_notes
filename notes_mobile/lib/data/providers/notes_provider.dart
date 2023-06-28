@@ -18,6 +18,7 @@ class NotesProvider extends ApiProvider {
   }
 
   Future<void> firstSyncronization(Map<String, dynamic> notes) async {
-    await http.post(uri("/notes/first_sync"), headers: await defaultHeaders);
+    await http.post(uri("/notes/first_sync"),
+        body: json.encode(notes), headers: await defaultHeaders);
   }
 }
