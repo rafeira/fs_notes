@@ -29,10 +29,8 @@ class NoteListPageController {
     if (await isLoggedIn) {
       if (notesFromBox.isNotEmpty) {
         await _showSyncPermissionMessage(navigatorState);
-        return await _getNotesFromApi();
-      } else {
-        return await _getNotesFromApi();
       }
+      return await _getNotesFromApi();
     } else {
       return notesFromBox;
     }
@@ -115,7 +113,7 @@ class NoteListPageController {
   Future<void> _showSyncPermissionMessage(NavigatorState navigatorState) async {
     final arguments = DefaultMessageArguments(
         message:
-            'Deseja sincronizar os dados armazenados localmente? Se optar por não sincronizar esses dados são perdidos.',
+            'Deseja sincronizar os dados armazenados localmente? Se optar por não sincronizar esses dados serão perdidos.',
         confirmButtonText: 'Sincronizar',
         confirmButtonCallback: () => _syncronizeNotesWithApi(navigatorState),
         declineButtonCallback: () => navigatorState.pop());
