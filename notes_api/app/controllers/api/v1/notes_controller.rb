@@ -1,6 +1,7 @@
 module Api
   module V1
     class NotesController < ApplicationController
+      before_action :check_user_status, only: %i(first_sync)
       def index
         @notes = Note.order(created_at: :desc)
         render json: @notes, status: :ok
@@ -21,6 +22,15 @@ module Api
           render json: {message: 'Anotação removida com sucesso!'}, status: :no_content
         else
           render json: {message: "Anotação com o id #{params[:id]} não encontrado"}, status: :not_found
+        end
+      end
+
+      def first_sync
+        if Note.save_all(notes_params)
+          @user.active!
+          render json: {message: 'Anotações sincronizadas com sucesso!'}, status: :created
+        else
+          render json: {message: 'Não foi possível sincronizar as anotações!'}, status: :unprocessable_entity
         end
       end
       private
