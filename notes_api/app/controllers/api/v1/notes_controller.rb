@@ -27,6 +27,13 @@ module Api
       def note_params
         params.require(:note).permit(:title, :content)
       end
+
+      def notes_params
+        params.require(:notes).map do |note_params|
+          note_params.permit(:title, :content)
+        end
+      end
+
     end
   end
 end
