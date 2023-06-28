@@ -6,7 +6,11 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :notes, only: %i(index create destroy)
+      resources :notes, only: %i(index create destroy) do
+        collection do
+          post :first_sync, to: 'notes#first_sync'
+        end
+      end
       scope :sessions do
       end
     end
