@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, jwt_revocation_strategy: JwtDenylist, 
          authentication_keys: [:email]
   validates :first_name, :last_name, presence: true
+
+  enum status: { created: 0, active: 1 }
 end

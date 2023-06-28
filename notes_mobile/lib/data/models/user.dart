@@ -11,6 +11,8 @@ class User extends HiveObject {
   String? firstName;
   @HiveField(3)
   String? lastName;
+  @HiveField(4)
+  String? status;
 
   String get fullName => "$firstName $lastName";
 
@@ -18,6 +20,7 @@ class User extends HiveObject {
       {required this.id,
       required this.email,
       required this.firstName,
+      required this.status,
       required this.lastName});
 
   static User? fromJson(Map<String, dynamic>? json) {
@@ -25,6 +28,7 @@ class User extends HiveObject {
     return User(
         id: json['id'],
         email: json['email'],
+        status: json['status'],
         firstName: json['first_name'],
         lastName: json['last_name']);
   }
@@ -33,6 +37,7 @@ class User extends HiveObject {
         'id': id,
         'email': email,
         'first_name': firstName,
+        'status': status,
         'last_name': lastName
       };
 }
