@@ -34,6 +34,12 @@ module Api
         end
       end
 
+      def check_user_status
+        if !@user.created?
+          render json: {message: 'Não sincronizado! Usuario não é novo.'}, status: :no_content
+          return
+        end
+      end
     end
   end
 end
