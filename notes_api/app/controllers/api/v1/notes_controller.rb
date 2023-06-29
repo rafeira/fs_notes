@@ -9,6 +9,7 @@ module Api
 
       def create
         @note = Note.new(note_params)
+        @note.author_id = @user.id
         if @note.save
           render json: @note, status: :created
         else
