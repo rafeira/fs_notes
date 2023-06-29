@@ -17,8 +17,8 @@ class NotesProvider extends ApiProvider {
     await http.delete(uri("/notes/$noteId"), headers: await defaultHeaders);
   }
 
-  Future<void> firstSyncronization(Map<String, dynamic> notes) async {
-    await http.post(uri("/notes/first_sync"),
+  Future<http.Response> firstSyncronization(Map<String, dynamic> notes) async {
+    return await http.post(uri("/notes/first_sync"),
         body: json.encode(notes), headers: await defaultHeaders);
   }
 }

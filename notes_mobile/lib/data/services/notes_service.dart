@@ -33,6 +33,12 @@ class NotesService {
     await _localNotesRepository.closeBox();
   }
 
+  Future<void> clearBox() async {
+    await _localNotesRepository.openBox();
+    await _localNotesRepository.clear();
+    await _localNotesRepository.closeBox();
+  }
+
   Future<void> addInApi(Note note) async {
     try {
       await _notesRepository.submit(note);
@@ -50,5 +56,6 @@ class NotesService {
   Future<void> syncronizeWithApi() async {
     final notes = await getAllFromBox();
     await _notesRepository.syncronizeWithApi(notes);
+    await clearBox();
   }
 }

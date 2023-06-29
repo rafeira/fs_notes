@@ -25,9 +25,10 @@ class NotesRepository {
     return false;
   }
 
-  Future<void> syncronizeWithApi(List<Note> notes) async {
-    await _provider
+  Future<bool> syncronizeWithApi(List<Note> notes) async {
+    final response = await _provider
         .firstSyncronization({'notes': notes.map((e) => e.toJson()).toList()});
+    return response.statusCode == 201;
   }
 
   Iterable _decodedIterableBody(String body) {
