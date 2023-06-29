@@ -1,9 +1,10 @@
 module Api
   module V1
     class NotesController < ApplicationController
+      before_action :set_notes, only: %i(index)
       before_action :check_user_status, only: %i(first_sync)
+
       def index
-        @notes = Note.order(created_at: :desc)
         render json: @notes, status: :ok
       end
 
@@ -50,6 +51,10 @@ module Api
           render json: {message: 'Não sincronizado! Usuario não é novo.'}, status: :no_content
           return
         end
+      end
+
+      def set_notes
+        @notes = @user.notes.order(created_at: :desc)
       end
     end
   end
